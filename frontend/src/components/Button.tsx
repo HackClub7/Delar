@@ -1,7 +1,8 @@
 
 const Button = () => {
   return (
-    <div>Button
+    <div className=" py-2 px-6 rounded-2xl  border text-[#FFFFFF] ">
+        Connect Wallet
     </div>
   )
 }
