@@ -7,6 +7,9 @@ import "./libs/Errors.sol";
 // import "hardhat/console.sol";
 
 contract DelarContract {
+    address tokenAddress;
+    address owner;
+
     mapping(uint => bool) public registeredTitles;
 
     struct Land {
@@ -45,6 +48,11 @@ contract DelarContract {
     event LandDelistedForSale(address _landOwner, uint indexed _landIndex);
     event LandVerified(address indexed _landOwner, uint indexed _landIndex);
 
+    constructor(address _tokenAddress) {
+        owner = msg.sender;
+        tokenAddress = _tokenAddress;
+    }
+
 
     // setter functions
     function registerLand(
@@ -82,9 +90,19 @@ contract DelarContract {
             isVerified: false
         });
 
+        LandHistory memory landHistory = LandHistory({
+            soldFrom: msg.sender,
+            soldTo: msg.sender,
+            amount: 0,
+            numberofPlots: _numberOfPlots,
+            date: block.timestamp
+        });
+
         lands[msg.sender].push(newLand);
 
         uint landIndex = lands[msg.sender].length - 1;
+
+        landHistoricalData[landIndex].push(landHistory);
 
         emit LandRegistered(msg.sender, landIndex, _landLocation);
     }
