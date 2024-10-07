@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
-import logo from "/src/assets/logo.svg";
+// import logo from "../assets/Logo.png";
 
 const Navbar = () => {
   return (
@@ -8,7 +8,7 @@ const Navbar = () => {
       <Link to="/">
         <span className="flex items-center gap-2 text-2xl font-bold justify-center text-white">
           {" "}
-          <img src={logo} alt="logo" />{" "}
+          <img src={'logo'} alt="logo" />{" "}
           Delar
         </span>
       </Link>
