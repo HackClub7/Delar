@@ -5,17 +5,18 @@ import LandDetails from "../components/LandDetails";
 
 const BuyersPage = () => {
   return (
-    <div className="min-h-screen mt-10 md:mt-0 flex flex-col items-center justify-center ">
+  <section className="container mx-auto overflow-x-hidden ">
+      <div className="min-h-screen mt-10 md:mt-0 flex flex-col items-center justify-center ">
       <div className="w-full  max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
         <div className="text-center">
           <p className="text-white mb-4 text-lg md:text-xl">Recently Listed</p>
-          <div className="grid grid-cols-1  sm:grid-cols-2 md:w-full md:grid-cols-3 gap-8 mx-4">
+          <div className="grid grid-cols-1  sm:grid-cols-2 md:w-full  md:grid-cols-3 gap-4 mx-4">
             {Array(3).fill(0).map((_, index) => (
               <div
                 key={index}
               className="bg-green-200 border border-green-200 rounded-3xl w-full sm:w-auto h-[320px] sm:h-auto flex flex-col"
               >
-                <div className="px-2 py-4 text-white text-center">
+                <div className=" text-white text-center">
                   <img src={card} alt="card" className="mx-auto mb-2" />
                   <p>Owner</p>
                 </div>
@@ -32,7 +33,7 @@ const BuyersPage = () => {
                 <p>Location</p>
                 <p className="text-green-300">Monitor</p>
               </div>
-              <hr className="border-t-2 border-green-300 mx-4 mt-3" />
+              <hr className="border-t-2 border-green-300 mx-auto mt-3" />
               <Availables />
             </div>
           </div>
@@ -41,7 +42,7 @@ const BuyersPage = () => {
     
         <div className="text-center">
           <p className="text-white mb-4 text-lg md:text-xl">Hottest Land</p>
-          <div className="relative w-full max-w-xs md:max-w-sm h-[700px] mx-auto">
+          <div className="relative w-full max-w-xs md:max-w-sm h-[665px] mx-auto">
             <img
               className="w-full h-full object-cover rounded-3xl"
               src={land}
@@ -56,6 +57,7 @@ const BuyersPage = () => {
         </div>
       </div>
     </div>
+  </section>
   );
 };
 
