@@ -2,6 +2,7 @@
 pragma solidity ^0.8.27;
 
 import "./libs/Errors.sol";
+import "./interface/IERC20.sol";
 
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
@@ -9,6 +10,12 @@ import "./libs/Errors.sol";
 contract DelarContract {
     address tokenAddress;
     address owner;
+    uint plotBasePrice = 100;
+
+    enum ElectricityIndex { Excellent, Average, Fair }
+    enum WaterIndex { Excellent, Average, Fair }
+    enum ProximityToTarredRoad { Close, Average, Far }
+    enum LocationIndex { Urban, Suburban, Rural }
 
     mapping(uint => bool) public registeredTitles;
 
@@ -180,26 +187,77 @@ contract DelarContract {
         emit LandDelistedForSale(msg.sender, landIndex);
     }
 
-    function buyLand() external {
+    function buyLand(uint _saleIndex, address _landOwner, uint _numberOfPlotsToBuy) external {
         // 1. validate that land exists and is up for sale
+        if(_saleIndex > landsForSale.length) {
+            revert Errors.InvalidLandIndex();
+        }
+
+
+        uint _landIndex = landsForSale[_saleIndex].landIndex;
+
+        Land storage sellerLand = lands[_landOwner][_landIndex];
+
+        if(_numberOfPlotsToBuy > sellerLand.plotsforSale) {
+            revert Errors.InvalidNumberOfPlots();
+        }
+
         // 2. validate buyer has sufficient Tokens
+        //ERC20 will handle that
+
+
         // 3. update state
         //      a). if all plots are sold,
         //           - transfer ownership by updating new owner address
         //           - set forSale to false
-        //           - transfer NFt to new owner
-        //      b). if a portion of plots are sold,
-        //           - deduct owner numberOfPlots
-        //           - set plotsForSale to 0
-        //           - set forSale to false
-        //           - mint new NFt to new owner
+
+        sellerLand.numberOfPlots -= _numberOfPlotsToBuy;
+        sellerLand.plotsforSale -= _numberOfPlotsToBuy;
+
+        if (sellerLand.plotsforSale == 0){
+            sellerLand.forSale = false;
+
+            landsForSale[_saleIndex] = landsForSale[landsForSale.length - 1];
+
+            landsForSale.pop();
+        }
+
+        uint _amountSold = sellerLand.netWorth * _numberOfPlotsToBuy;
+
         // 4. update Land History
+        LandHistory memory _landHistory = LandHistory({
+            soldFrom: _landOwner,
+            soldTo: msg.sender,
+            amount: _amountSold,
+            numberofPlots: _numberOfPlotsToBuy,
+            date: block.timestamp
+        });
+
+        landHistoricalData[_landIndex].push(_landHistory);
+
         // 5. Transfer Tokens from buyer to seller
+        IERC20(tokenAddress).transferFrom(msg.sender, _landOwner, _amountSold);
+        
+        //           - transfer NFt to new owner
+        //           - mint new NFt to new owner
     }
 
-    function calculateLandNetWorth() external {
+    function calculateLandNetWorth(
+        address _landOwner,
+        uint _landIndex, 
+        ElectricityIndex _electricityIndex, 
+        WaterIndex _waterIndex, 
+        ProximityToTarredRoad _proximityIndex,
+        LocationIndex _locationIndex) external {
+
         // 1. determine land networth and update land
-        // 2. mint NFt for valued land
+
+        uint _totalPoints = this.getTotalPoints(_electricityIndex, _waterIndex, _proximityIndex, _locationIndex);
+        uint _landValue = plotBasePrice * _totalPoints;
+
+        lands[_landOwner][_landIndex].netWorth = _landValue;
+
+        // 2.deduct tokens & mint NFt for valued land
     }
 
     function userRequestNetWorthValueAppreciation() external {
@@ -218,6 +276,60 @@ contract DelarContract {
         return lands[_landOwner];
     }
     
+    function getTotalPoints(
+        ElectricityIndex _electricityIndex, 
+        WaterIndex _waterIndex, 
+        ProximityToTarredRoad _proximityIndex,
+        LocationIndex _locationIndex
+        ) external pure returns(uint) {
+        
+        uint256 totalPoints = 0;
 
+        // calculate electricity index
+        if (_electricityIndex == ElectricityIndex.Excellent) {
+            totalPoints += 2;
+        } 
+        if (_electricityIndex == ElectricityIndex.Average) {
+            totalPoints += 1;
+        } 
+        if (_electricityIndex == ElectricityIndex.Fair){
+            totalPoints += 0;
+        }
+
+        // calculate water index
+        if (_waterIndex == WaterIndex.Excellent) {
+            totalPoints += 2;
+        } 
+        if (_waterIndex == WaterIndex.Average) {
+            totalPoints += 1;
+        } 
+        if (_waterIndex == WaterIndex.Fair){
+            totalPoints += 0;
+        }
+
+        // calculate proximity index
+        if (_proximityIndex == ProximityToTarredRoad.Close) {
+            totalPoints += 2;
+        } 
+        if (_proximityIndex == ProximityToTarredRoad.Average) {
+            totalPoints += 1;
+        } 
+        if (_proximityIndex == ProximityToTarredRoad.Far) {
+            totalPoints += 0;
+        }
+
+        // calculate location index
+        if (_locationIndex == LocationIndex.Urban) {
+            totalPoints += 2;
+        } 
+        if (_locationIndex == LocationIndex.Suburban) {
+            totalPoints += 1;
+        } 
+        if (_locationIndex == LocationIndex.Rural) {
+            totalPoints += 0;
+        }
+
+        return totalPoints;
+    }
 
 }
