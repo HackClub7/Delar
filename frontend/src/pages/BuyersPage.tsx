@@ -1,4 +1,4 @@
-import card from "../assets/card.png";
+import card from "../assets/cards.png";
 import land from "../assets/landOverview.png";
 import Availables from "../components/Availables";
 import LandDetails from "../components/LandDetails";
