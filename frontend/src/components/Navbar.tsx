@@ -1,7 +1,7 @@
 import { useState } from "react"; 
 import { Link } from "react-router-dom";
 import Button from "./Button";
-import logo from "/src/assets/logo.svg";
+import logo from "/src/assets/logos.svg";
 import Button2 from "./Button2";
 import { HiMenu, HiX } from "react-icons/hi"; 
 
