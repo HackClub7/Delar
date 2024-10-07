@@ -1,5 +1,5 @@
 import LandDetails from "../components/LandDetails"
-import card from "../assets/card.png"
+import card from "../assets/cards.png"
 
 const MyLands = () => {
   return (

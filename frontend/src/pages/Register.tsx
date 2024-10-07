@@ -49,7 +49,7 @@ const Register = () => {
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
-          <div className="pt-20 mt-16">
+          <div className="">
             <img className="mx-auto w-20" src={vector} alt="vector" />
             <p>
               Drag your file(s) or{" "}
@@ -72,17 +72,17 @@ const Register = () => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-4 max-w-md w-full p-6 bg-gray-100 rounded-lg"
+          className="space-y-4 max-w-md w-full p-6 min-h-[400px] bg-gray-100 rounded-lg"
         >
           <div className="flex flex-col">
             <label htmlFor="landId" className="text-gray-700 font-semibold mb-1">
-              Land Id
+              Title Number
             </label>
             <input
               type="text"
               id="landId"
-              placeholder="Enter Land Id"
-              className="bg-gray-200 border border-gray-400 rounded-lg p-2 placeholder-white focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter Tittle Number"
+              className="bg-gray-200 border border-gray-400 rounded-lg p-2 focus:ring-2 focus:ring-blue-400"
               {...register("landId", { required: "Land Id is required" })}
             />
             {errors.landId && <span className="text-red-500 text-sm">{errors.landId.message}</span>}
@@ -90,46 +90,33 @@ const Register = () => {
 
           <div className="flex flex-col">
             <label htmlFor="landSize" className="text-gray-700 font-semibold mb-1">
-              Land Size
+              Land Location
             </label>
             <input
               type="text"
               id="landSize"
-              placeholder="Enter Land Size"
-              className="bg-gray-200 border border-gray-400 rounded-lg p-2 placeholder-white focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter Land Location"
+              className="bg-gray-200 border border-gray-400 rounded-lg p-2  focus:ring-2 focus:ring-blue-400"
               {...register("landSize", { required: "Land Size is required" })}
             />
             {errors.landSize && <span className="text-red-500 text-sm">{errors.landSize.message}</span>}
           </div>
           <div className="flex flex-col">
             <label htmlFor="landPrice" className="text-gray-700 font-semibold mb-1">
-              Land Price
+              Number of Plots
             </label>
             <input
               type="text"
               id="landPrice"
-              placeholder="Enter Land Price"
-              className="bg-gray-200 border border-gray-400 rounded-lg p-2 placeholder-white focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter Number of Plolts"
+              className="bg-gray-200 border border-gray-400 rounded-lg p-2  focus:ring-2 focus:ring-blue-400"
               {...register("landPrice", { required: "Land Price is required" })}
             />
             {errors.landPrice && <span className="text-red-500 text-sm">{errors.landPrice.message}</span>}
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="landDescription" className="text-gray-700 font-semibold mb-1">
-              Land Description
-            </label>
-            <textarea
-              id="landDescription"
-              placeholder="Enter Land Description"
-              className="bg-gray-200 border border-gray-400 rounded-lg p-2 placeholder-white focus:ring-2 focus:ring-blue-400"
-              {...register("landDescription", { required: "Land Description is required" })}
-            />
-            {errors.landDescription && <span className="text-red-500 text-sm">{errors.landDescription.message}</span>}
-          </div>
-
           <button
             type="submit"
-            className="bg-green-300 text-white px-4 py-2 rounded-lg hover:bg-green-200 transition duration-300 w-full"
+            className="bg-green-300 text-white px-4 py-2  rounded-lg hover:bg-green-200 transition duration-300 w-full"
           >
             Lease Land
           </button>
