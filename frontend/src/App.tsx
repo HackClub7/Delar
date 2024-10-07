@@ -10,6 +10,7 @@ import Home from './components/Home'
 import Root from './Root'
 import BuyersPage from './pages/BuyersPage';
 import Register from './pages/Register';
+import MyLands from './pages/MyLands';
 
 function App() {
   const router = createBrowserRouter(
@@ -18,6 +19,8 @@ function App() {
         <Route index element={<Home/>}/>
         <Route path='/buyerspage' element={<BuyersPage/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/MyLands' element={<MyLands/>}/>
+
 
       </Route>
 
