@@ -145,11 +145,11 @@ contract DelarContract {
             revert Errors.LandIsNotVerified();
         }
 
-        if(!userLand.forSale) {
+        if(userLand.forSale) {
             revert Errors.LandIsAlreadyForSale();
         }
 
-        if(_landPortion > userLand.plotsforSale) {
+        if(_landPortion > userLand.numberOfPlots) {
             revert Errors.InvalidNumberOfPlots();
         }
 
@@ -272,8 +272,8 @@ contract DelarContract {
         return landsForSale;
     }
 
-    function veiwOwnerLands(address _landOwner) external view returns(Land[] memory) {
-        return lands[_landOwner];
+    function veiwOwnerLands() external view returns(Land[] memory) {
+        return lands[msg.sender];
     }
     
     function getTotalPoints(

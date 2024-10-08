@@ -21,6 +21,8 @@ library Errors {
 
     error LandIsAlreadyForSale();
 
+    error LandIsNotForSale();
+
     error NotTheOwner();
 
     error LandIsNotValuedYet();
