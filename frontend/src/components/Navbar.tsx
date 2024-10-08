@@ -18,11 +18,6 @@ const Navbar = () => {
     <div className="flex items-center justify-between p-8 mx-4 md:mx-16">
    
       <Link to="/">
-
-        <span className="flex items-center gap-2 text-2xl font-bold justify-center text-white">
-          {" "}
-          <img src={'logo'} alt="logo" />{" "}
-
         <span className="flex items-center gap-2 text-2xl font-bold text-white">
           <img src={logo} alt="logo" />
           Delar
