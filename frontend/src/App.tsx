@@ -10,6 +10,9 @@ import {
 import Home from './components/Home'
 import Root from './Root'
 import BuyersPage from './pages/BuyersPage';
+
+import TransactionHistory from './pages/TransactionHistory';
+import LandDetails from './pages/LandDetails';
 import Register from './pages/Register';
 import MyLands from './pages/MyLands';
 import "../connection";
@@ -41,10 +44,10 @@ function App() {
       <Route path="/" element={<Root/>}>
         <Route index element={<Home/>}/>
         <Route path='/buyerspage' element={<BuyersPage/>}/>
+        <Route path='/land-details' element={<LandDetails/>}/>
+        <Route path='/transactionhistory' element={<TransactionHistory/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/MyLands' element={<MyLands/>}/>
-
-
       </Route>
 
     )

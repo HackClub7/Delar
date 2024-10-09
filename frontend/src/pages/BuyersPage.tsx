@@ -1,5 +1,15 @@
+
+// import card from "../assets/card.png";
+
+
 import card from "../assets/cards.png";
+
 import landImage from "../assets/landOverview.png";
+
+
+import land from "../assets/landOverview.png";
+import Availables from "../components/Availables";
+
 import LandDetails from "../components/LandDetails";
 import useContract from '../hooks/useContract';
 import { useCallback, useEffect, useState } from 'react';

@@ -1,5 +1,10 @@
 import { useState } from "react"; 
 import { Link } from "react-router-dom";
+
+import Button from "./Button";
+
+// import logo from "../assets/Logo.png";
+
 import logo from "/src/assets/logos.svg";
 import { HiMenu, HiX } from "react-icons/hi"; 
 import { ToastContainer } from "react-toastify";

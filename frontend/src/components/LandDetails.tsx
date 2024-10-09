@@ -37,8 +37,8 @@ interface LandDetailsProps {
 
 const LandDetails: React.FC<LandDetailsProps> = ({ numberOfPlots, landLocation, titleNumber, price }) => {
   return (
-    <div className="p-2 rounded-lg flex flex-col justify-between h-full">
-      <div className="flex items-center gap-2 text-white">
+    <div className="rounded-lg flex flex-col">
+      <div className="flex text-white">
         <img className="w-6 h-6 rounded-full" src={icon} alt="icon" />
         <p className="text-xs md:text-sm truncate w-32">{landLocation}</p>
       </div>
