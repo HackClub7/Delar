@@ -13,7 +13,7 @@ const useRegisterLand = () => {
     const { address } = useAppKitAccount();
     const { chainId } = useAppKitNetwork();
     return useCallback(
-        async (numberOfPlots: string, landLocation: string, titleNumber: Number) => {
+        async (numberOfPlots: string, landLocation: string, titleNumber: number) => {
             if (
                 !numberOfPlots ||
                 !landLocation ||
