@@ -26,6 +26,7 @@
 
 import icon from "../assets/icon.png";
 import ether from "../assets/Eth.svg";
+import { Link } from "react-router-dom";
 
 // Define the props for LandDetails to accept the dynamic data
 interface LandDetailsProps {
@@ -49,9 +50,17 @@ const LandDetails: React.FC<LandDetailsProps> = ({ numberOfPlots, landLocation, 
           <img src={ether} alt="ether icon" className="w-4 h-4 md:w-5 md:h-5" />
           <span className="ml-1">{price} ETH</span>
         </span>
+
+        <Link to={"/land-details"}>
+          <button className="border border-white rounded-2xl py-1 px-[1px] text-xs md:text-sm md:py-[1px] hover:bg-white hover:text-black transition duration-300">
+            See Details
+          </button>
+        </Link>
+
         <button className="border border-white rounded-2xl p-1 text-xs md:text-xs md:p-1 hover:bg-white hover:text-black transition duration-300">
           See Details
         </button>
+
       </div>
     </div>
   );

@@ -11,6 +11,9 @@ import land from "../assets/landOverview.png";
 import Availables from "../components/Availables";
 
 import LandDetails from "../components/LandDetails";
+
+import { Link } from "react-router-dom";
+
 import useContract from '../hooks/useContract';
 import { useCallback, useEffect, useState } from 'react';
 

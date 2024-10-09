@@ -41,6 +41,9 @@ const Navbar = () => {
         </button>
       </div>
 
+      <div className={`flex md:flex items-center gap-2 ${isOpen ? "flex-col absolute top-12 right-0  w-full  md:static md:flex-row" : "hidden md:flex"}`}>
+        <Button />
+
     
       <div
         className={`${
@@ -76,6 +79,7 @@ const Navbar = () => {
     
       <div className="hidden md:flex md:flex-row md:gap-4 items-center">
         <w3m-button />
+
       </div>
       
       <ToastContainer />
