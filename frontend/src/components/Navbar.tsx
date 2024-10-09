@@ -4,7 +4,6 @@ import Button from "./Button";
 
 // import logo from "../assets/Logo.png";
 import logo from "/src/assets/logos.svg";
-import Button2 from "./Button2";
 import { HiMenu, HiX } from "react-icons/hi"; 
 
 const Navbar = () => {
@@ -36,7 +35,6 @@ const Navbar = () => {
       </div>
 
       <div className={`flex md:flex items-center gap-2 ${isOpen ? "flex-col absolute top-12 right-0  w-full  md:static md:flex-row" : "hidden md:flex"}`}>
-        <Button2 />
         <Button />
       </div>
     </div>

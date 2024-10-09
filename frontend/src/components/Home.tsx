@@ -4,10 +4,11 @@ import landlocation from "../assets/landlocation.png";
 import land from "../assets/land.png";
 import landblock from "../assets/landbloc.png";
 import button from "../assets/bottuns.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="flex justify-center items-center w-full h-full m-0 text-[#FFFFFF]">
+    <div className="flex justify-center  mt-8 items-center w-full h-full m-0 text-[#FFFFFF]">
       <div className="text-[#FFFFFF] w-full h-full items-center justify-center flex overflow-hidden m-0">
         <div className="md:ml-[10px]">
           <div className="md:w-[409px] w-[150px] ml-[80px] md:h-[220px] h-[370px] md:flex md:flex-col md:justify-center md:items-start">
@@ -19,13 +20,17 @@ const Home = () => {
             </p>
           </div>
           <div className="md:w-[357.8px] w-[250px] md:h-[352.28px] h-[100px] flex flex-col items-center justify-center mr-[20px] md:mb-[0px] mb-[110px]">
-            <button className="md:w-[183px] md:h-[47px] md:mt-[56.92px] rounded-[12px] border-[1px] bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-              Buy Land
-            </button>
+            <Link to={"/buyersPage"}>
+              <button className="md:w-[183px] md:h-[47px] md:mt-[56.92px] rounded-[12px] border-[1px] bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+                Buy Land
+              </button>
+            </Link>
             <img src={button} alt=""/>
-            <button className="md:w-[183px] md:h-[47px] rounded-[12px] border-[1px] bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-              Sell Land
-            </button>
+            <Link to={"/register"}>
+              <button className="md:w-[183px] md:h-[47px] rounded-[12px] border-[1px] bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+                Sell Land
+              </button>
+            </Link>
           </div>
         </div>
         <div className="w-full h-full rounded-[20px] flex flex-col relative">

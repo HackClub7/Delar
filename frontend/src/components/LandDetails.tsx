@@ -1,5 +1,6 @@
 import icon from "../assets/icon.png";
 import ether from "../assets/Eth.svg";
+import { Link } from "react-router-dom";
 
 const LandDetails = () => {
   return (
@@ -14,9 +15,11 @@ const LandDetails = () => {
           <img src={ether} alt="" className="w-4 h-4 md:w-5 md:h-5" />
           <span className="ml-1">1.09 eth</span>
         </span>
-        <button className="border border-white rounded-2xl py-1 px-3 text-xs md:text-sm md:py-1 hover:bg-white hover:text-black transition duration-300">
-          See Details
-        </button>
+        <Link to={"/land-details"}>
+          <button className="border border-white rounded-2xl py-1 px-[1px] text-xs md:text-sm md:py-[1px] hover:bg-white hover:text-black transition duration-300">
+            See Details
+          </button>
+        </Link>
       </div>
     </div>
   );

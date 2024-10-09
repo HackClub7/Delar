@@ -35,12 +35,12 @@ const statusClasses = {
 
 const TransactionHistory = () => {
   return (
-    <div className="p-6 bg-green-100 min-h-screen flex items-center justify-center">
+    <div className="p-6 min-h-screen flex items-center justify-center">
       <div className="bg-green-200 shadow-md rounded-lg overflow-hidden w-full max-w-4xl">
         <h2 className="text-xl font-semibold text-gray-800 p-4 bg-green-300">
           Transaction History
         </h2>
-        <table className="min-w-full bg-white">
+        <table className="w-full bg-white">
           <thead>
             <tr>
               <th className="py-2 px-4 bg-green-500 text-left text-white">Transaction ID</th>

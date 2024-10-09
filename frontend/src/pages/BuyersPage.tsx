@@ -7,6 +7,7 @@ import card from "../assets/cards.png";
 import land from "../assets/landOverview.png";
 import Availables from "../components/Availables";
 import LandDetails from "../components/LandDetails";
+import { Link } from "react-router-dom";
 
 const BuyersPage = () => {
   return (
