@@ -2,13 +2,16 @@
 pragma solidity ^0.8.27;
 
 import "./libs/Errors.sol";
+import "./libs/Events.sol";
 import "./interface/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
 
 contract DelarContract {
     address tokenAddress;
+    address nftAddress;
     address owner;
     uint plotBasePrice = 100;
 
@@ -50,14 +53,10 @@ contract DelarContract {
     //todo: work logic to map land historical data to land index & update in code
     mapping (uint => LandHistory[]) public landHistoricalData;
 
-    event LandRegistered(address _landOwner, uint indexed _landIndex, string indexed _landLocation);
-    event LandListedForSale(address _landOwner, uint indexed _landIndex, uint indexed _price, uint indexed plotsForSell);
-    event LandDelistedForSale(address _landOwner, uint indexed _landIndex);
-    event LandVerified(address indexed _landOwner, uint indexed _landIndex);
-
-    constructor(address _tokenAddress) {
+    constructor(address _tokenAddress, address _nftAddress) {
         owner = msg.sender;
         tokenAddress = _tokenAddress;
+        nftAddress = _nftAddress;
     }
 
 
@@ -111,7 +110,7 @@ contract DelarContract {
 
         landHistoricalData[landIndex].push(landHistory);
 
-        emit LandRegistered(msg.sender, landIndex, _landLocation);
+        emit Events.LandRegistered(msg.sender, landIndex, _landLocation);
     }
 
     function verifyLand(address _landOwner, uint _landIndex) external {
@@ -128,9 +127,20 @@ contract DelarContract {
             revert Errors.LandIsNotValuedYet();
         }
 
+        uint _delarVerificationCharges = lands[_landOwner][_landIndex].numberOfPlots * 10; // delar tokens
+
+        if(IERC20(tokenAddress).balanceOf(_landOwner) < _delarVerificationCharges) {
+            revert Errors.InsufficientDelarTokens();
+        }
+
         lands[_landOwner][_landIndex].isVerified = true;
 
-        emit LandVerified(_landOwner, _landIndex);
+        //todo: (shaiibu) check this logic
+        IERC1155(nftAddress).mint(_landOwner, _landIndex, lands[_landOwner][_landIndex].numberOfPlots, ['']);
+
+        IERC20(tokenAddress).transferFrom(_landOwner, address(this), _delarVerificationCharges);
+
+        emit Events.LandVerified(_landOwner, _landIndex);
     }
 
     function listLand(uint _landIndex, uint _landPortion) external {
@@ -188,58 +198,54 @@ contract DelarContract {
     }
 
     function buyLand(uint _saleIndex, address _landOwner, uint _numberOfPlotsToBuy) external {
-        // 1. validate that land exists and is up for sale
-        if(_saleIndex > landsForSale.length) {
+        if (_saleIndex >= landsForSale.length) {
             revert Errors.InvalidLandIndex();
         }
-
 
         uint _landIndex = landsForSale[_saleIndex].landIndex;
 
         Land storage sellerLand = lands[_landOwner][_landIndex];
 
-        if(_numberOfPlotsToBuy > sellerLand.plotsforSale) {
+        if (_numberOfPlotsToBuy > sellerLand.plotsforSale) {
             revert Errors.InvalidNumberOfPlots();
         }
 
-        // 2. validate buyer has sufficient Tokens
-        //ERC20 will handle that
-
-
-        // 3. update state
-        //      a). if all plots are sold,
-        //           - transfer ownership by updating new owner address
-        //           - set forSale to false
 
         sellerLand.numberOfPlots -= _numberOfPlotsToBuy;
         sellerLand.plotsforSale -= _numberOfPlotsToBuy;
-
-        if (sellerLand.plotsforSale == 0){
-            sellerLand.forSale = false;
-
-            landsForSale[_saleIndex] = landsForSale[landsForSale.length - 1];
-
-            landsForSale.pop();
-        }
-
         uint _amountSold = sellerLand.netWorth * _numberOfPlotsToBuy;
 
-        // 4. update Land History
-        LandHistory memory _landHistory = LandHistory({
-            soldFrom: _landOwner,
-            soldTo: msg.sender,
-            amount: _amountSold,
-            numberofPlots: _numberOfPlotsToBuy,
-            date: block.timestamp
+         if(IERC20(tokenAddress).balanceOf(msg.sender) < _amountSold) {
+            revert Errors.InsufficientDelarTokens();
+         }
+
+        Land memory buyerLand = Land({
+            numberOfPlots: _numberOfPlotsToBuy,
+            landLocation: sellerLand.landLocation,
+            titleNumber: sellerLand.titleNumber,
+            netWorth: sellerLand.netWorth,
+            plotsforSale: sellerLand.plotsforSale,
+            isVerified: sellerLand.isVerified,
+            forSale: false
         });
 
-        landHistoricalData[_landIndex].push(_landHistory);
+        lands[msg.sender].push(buyerLand);
 
-        // 5. Transfer Tokens from buyer to seller
+        // 3. If all plots are sold, transfer ownership
+        if (sellerLand.numberOfPlots == 0) {
+            //todo (shaiibu): transfer NFT to new owner
+            delete lands[_landOwner][_landIndex];
+            landsForSale[_saleIndex] = landsForSale[landsForSale.length - 1];
+            landsForSale.pop();
+        }else {
+            //todo(shaiibu): mint new token to owner
+            // i ignored landHistory manipulation, it was leading to loops that was gas inefficient and caused errors [future]
+            IERC1155(nftAddress).mint(_landOwner, _landIndex, lands[_landOwner][_landIndex].numberOfPlots, ['']);
+        }
+
         IERC20(tokenAddress).transferFrom(msg.sender, _landOwner, _amountSold);
-        
-        //           - transfer NFt to new owner
-        //           - mint new NFt to new owner
+
+        emit Events.LandSold(_landOwner, msg.sender, _amountSold);
     }
 
     function calculateLandNetWorth(
@@ -250,16 +256,13 @@ contract DelarContract {
         ProximityToTarredRoad _proximityIndex,
         LocationIndex _locationIndex) external {
 
-        // 1. determine land networth and update land
-
         uint _totalPoints = this.getTotalPoints(_electricityIndex, _waterIndex, _proximityIndex, _locationIndex);
         uint _landValue = plotBasePrice * _totalPoints;
 
         lands[_landOwner][_landIndex].netWorth = _landValue;
-
-        // 2.deduct tokens & mint NFt for valued land
     }
 
+   //future
     function userRequestNetWorthValueAppreciation() external {
         // 1. when environmental changes and enhancements occurs,
         // 2. user should request so that team can valuate and appreciate propety value

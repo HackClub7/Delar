@@ -26,4 +26,6 @@ library Errors {
     error NotTheOwner();
 
     error LandIsNotValuedYet();
+
+    error InsufficientDelarTokens();
 }
