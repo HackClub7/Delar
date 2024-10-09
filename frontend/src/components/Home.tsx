@@ -8,61 +8,58 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="flex justify-center  mt-8 items-center w-full h-full m-0 text-[#FFFFFF]">
-      <div className="text-[#FFFFFF] w-full h-full items-center justify-center flex overflow-hidden m-0">
-        <div className="md:ml-[10px]">
-          <div className="md:w-[409px] w-[150px] ml-[80px] md:h-[220px] h-[370px] md:flex md:flex-col md:justify-center md:items-start">
-            <h2 className="md:w-[359px] w-[200px] md:h-[150px] h-[100px] md:text-5xl text-2xl md:tracking-negative-8 tracking-negative-5 font-normal md:leading-[45.5px] leading-[25.5px]">
-              Revolutionizing Land Ownership with Blockchain
-            </h2>
-            <p className="md:w-[309px] w-[200px] md:h-[78px] h-[150px] md:text-lg text-l">
-              Secure transparent, and borderless land transactions, powered by smart contracts
-            </p>
-          </div>
-          <div className="md:w-[357.8px] w-[250px] md:h-[352.28px] h-[100px] flex flex-col items-center justify-center mr-[20px] md:mb-[0px] mb-[110px]">
-            <Link to={"/buyersPage"}>
-              <button className="md:w-[183px] md:h-[47px] md:mt-[56.92px] rounded-[12px] border-[1px] bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-                Buy Land
-              </button>
-            </Link>
-            <img src={button} alt=""/>
-            <Link to={"/register"}>
-              <button className="md:w-[183px] md:h-[47px] rounded-[12px] border-[1px] bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-                Sell Land
-              </button>
-            </Link>
-          </div>
+    <div className="flex flex-col lg:flex-row justify-center items-center w-full h-full text-white p-4 lg:p-8">
+      <div className="lg:w-1/2 w-full lg:pr-8">
+        <div className="text-center lg:text-left">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight md:leading-snug lg:leading-[45.5px] mb-4">
+            Revolutionizing Land Ownership with Blockchain
+          </h2>
+          <p className="text-sm md:text-lg lg:text-xl mb-8">
+            Secure, transparent, and borderless land transactions, powered by smart contracts
+          </p>
         </div>
-        <div className="w-full h-full rounded-[20px] flex flex-col relative">
+        <div className="flex flex-col items-center lg:items-start gap-4">
+          <Link to={"/buyersPage"}>
+            <button className="w-full lg:w-auto px-8 py-3 rounded-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+              Buy Land
+            </button>
+          </Link>
+          <img src={button} alt="" className="hidden lg:block w-[183px] h-auto" />
+          <Link to={"/register"}>
+            <button className="w-full lg:w-auto px-8 py-3 rounded-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+              Sell Land
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="lg:w-3/5 w-full mt-8 lg:mt-0">
+        <div className="relative lg:grid-cols-2 grid  grid-cols-1 md:grid-cols-2 gap-4">
           <img
             src={landcover}
-            alt="Land 3"
-            className="rounded-[20px] lg:max-w-none lg:w-[270px] w-[250px] h-[0px] lg:h-[293px] ml-[230px] mt-[150px] absolute z-50"
+            alt="Land Cover"
+            className="col-span-1 md:col-span-2 rounded-lg w-full lg:w-[270px] lg:h-[293px] lg:absolute lg:z-10 lg:top-[-50px] lg:left-[50%] lg:transform lg:translate-x-[-50%] md:relative"
           />
-          <div className="flex lg:w-[352px] w-[450px] lg:h-[302px] h-[300px] lg:gap-[20px] gap-[10px]">
-            <img
-              src={landOverview}
-              alt="Land 1"
-              className="rounded-[20px] lg:w-[370px] w-[200px] h-[250px] lg:w-[470px] lg:h-[282px] border-[3px] lg:p-4 lg:bg-white"
-            />
-            <img
-              src={landblock}
-              alt="Land 2"
-              className="rounded-[20px] lg:w-[326px] w-[200px] h-[250px] lg:h-[282px] border-[3px] lg:p-4 lg:bg-white"
-            />
-          </div>
-          <div className="flex lg:w-[402px] w-[450px] lg:h-[302px] h-[300px] lg:gap-[20px] gap-[10px]">
-            <img
-              src={landlocation}
-              alt="Land 4"
-              className="rounded-[20px] lg:w-[370px] w-[200px] h-[250px] lg:w-[470px] lg:h-[282px] border-[3px]"
-            />
-            <img
-              src={land}
-              alt="Land 5"
-              className="rounded-[20px] lg:w-[336px] w-[200px] h-[250px] lg:h-[282px] border-[3px]"
-            />
-          </div>
+          <img
+            src={landOverview}
+            alt="Land Overview"
+            className="rounded-lg w-full h-auto border-2 p-2 bg-white"
+          />
+          <img
+            src={landblock}
+            alt="Land Block"
+            className="rounded-lg w-full h-auto border-2 p-2 bg-white"
+          />
+          <img
+            src={landlocation}
+            alt="Land Location"
+            className="rounded-lg w-full h-auto border-2"
+          />
+          <img
+            src={land}
+            alt="Land"
+            className="rounded-lg w-full h-auto border-2"
+          />
         </div>
       </div>
     </div>
