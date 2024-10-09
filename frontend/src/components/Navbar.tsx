@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between p-8 mx-4 md:mx-16">
+    <div className="flex items-center justify-between p-10 mx-8 md:mx-16">
       
       <Link to="/" onClick={handleLinkClick}>
         <span className="flex items-center gap-2 text-2xl font-bold text-white">
@@ -41,17 +41,18 @@ const Navbar = () => {
         </button>
       </div>
 
-      <div className={`flex md:flex items-center gap-2 ${isOpen ? "flex-col absolute top-12 right-0  w-full  md:static md:flex-row" : "hidden md:flex"}`}>
+      {/* <div className={`flex md:flex items-center gap-2 ${isOpen ? "flex-col absolute top-12 right-0  w-full  md:static md:flex-row" : "hidden md:flex"}`}>
         <Button />
+      </div> */}
 
     
       <div
         className={`${
           isOpen
-            ? "flex  absolute top-16 right-0 left-11  w-full py-3 z-10"
+            ? "flex  absolute top-12 right-0 left-16  w-full py-3 z-10"
             : "hidden"
         } md:hidden`}  
-      >
+        >
         <Link
           to="/buyerspage"
           className="text-white block px-4 py-2"
@@ -77,7 +78,7 @@ const Navbar = () => {
       </div>
 
     
-      <div className="hidden md:flex md:flex-row md:gap-4 items-center">
+      <div className="hidden md:flex md:flex-row md:gap-10 ml-[775px] items-center">
         <w3m-button />
 
       </div>
