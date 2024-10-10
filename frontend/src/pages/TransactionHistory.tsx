@@ -51,8 +51,8 @@ const getStatusClasses = (status: string) => {
 
 const TransactionHistory = () => {
   return (
-    <div className="p-4 min-h-screen flex items-center justify-center">
-      <div className="bg-green-200 shadow-md rounded-lg overflow-x-auto w-full max-w-4xl">
+    <div className="flex justify-center">
+            <div className="bg-green-200 shadow-md rounded-lg overflow-x-auto  h-full max-w-4xl mt-10 mx-4">
         <h2 className="text-xl font-semibold text-gray-800 p-4 bg-green-300">
           Transaction History
         </h2>
@@ -81,7 +81,7 @@ const TransactionHistory = () => {
                     <img
                       src={land}
                       alt="transaction"
-                      className="w-10 h-10 mr-3"
+                      className="w-10 h-10 mr-3 hidden md:block"
                     />
                     <span className="text-sm">{transaction.id}</span>
                   </td>
@@ -103,6 +103,7 @@ const TransactionHistory = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 

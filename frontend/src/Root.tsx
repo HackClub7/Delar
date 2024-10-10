@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar"
 
 const Root = () => {
   return (
-    <div className='w-[100vw] min-h-[100vh]   bg-custom-gradient bg-cover bg-center'>
+    <div className='w-full  min-h-screen overflow-hidden  bg-custom-gradient bg-cover bg-center'>
         <Navbar/>
         <Outlet/>
 

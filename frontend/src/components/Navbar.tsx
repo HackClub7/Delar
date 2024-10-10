@@ -18,9 +18,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between p-10 mx-8 md:mx-16">
-      
-      <Link to="/" onClick={handleLinkClick}>
+    <div className="flex items-center justify-between p-3 md:p-10  md:mx-16 ">
+      <Link to="/" onClick={handleLinkClick} className="">
         <span className="flex items-center gap-2 text-2xl font-bold text-white">
           <img src={logo} alt="logo" />
           Delar
@@ -37,49 +36,46 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* <div className={`flex md:flex items-center gap-2 ${isOpen ? "flex-col absolute top-12 right-0  w-full  md:static md:flex-row" : "hidden md:flex"}`}>
-        <Button />
-      </div> */}
-
-    
+     
+{/* nav bar icons */}
       <div
         className={`${
           isOpen
-            ? "flex  absolute top-12 right-0 left-16  w-full py-3 z-10"
+            ? "flex  flex-col absolute top-11 right-7 justify-center items-center w-[50%] py-3 z-10 bg-white rounded-tl-lg rounded-bl-lg rounded-br-lg"
             : "hidden"
-        } md:hidden`}  
-        >
+        } md:hidden`}
+      >
         <Link
           to="/buyerspage"
-          className="text-white block px-4 py-2"
+          className="text-black block px-4 py-1 bg-green-100 border-2 rounded-2xl mb-2"
           onClick={handleLinkClick}
         >
-          Buy 
+          Buy
         </Link>
         <Link
           to="/register"
-          className="text-white block px-4 py-2"
+         className="text-black block px-4 py-1 bg-green-100 border-2 rounded-2xl mb-2"
           onClick={handleLinkClick}
         >
           Register
         </Link>
         <Link
           to="/mylands"
-          className="text-white block px-4 py-2"
+          className="text-black block px-4 py-1 bg-green-100 border-2 rounded-2xl mb-2 hover:bg-green-500"
           onClick={handleLinkClick}
         >
-          Lands
+         View Lands
         </Link>
         <w3m-button />
       </div>
 
-    
       <div className="hidden md:flex md:flex-row md:gap-10 ml-[775px] items-center">
         <w3m-button />
-
       </div>
-      
-      <ToastContainer />
+
+      <div className="absolute">
+        <ToastContainer />
+      </div>
     </div>
   );
 };
