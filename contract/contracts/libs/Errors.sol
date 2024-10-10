@@ -1,9 +1,28 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
-// Uncomment this line to use console.log
-// import "hardhat/console.sol";
+library Errors {
+    error InvalidNumberOfPlots();
 
-interface Errors {
-    
+    error InvalidLandLocation();
+
+    error InvalidTitleNumber();
+
+    error TitleExistAlready();
+
+    error LandIsVerifiedAlready();
+
+    error InvalidLandIndex();
+
+    error LandIsNotVerified();
+
+    error LandIsAlreadyForSale();
+
+    error LandIsNotForSale();
+
+    error NotTheOwner();
+
+    error LandIsNotValuedYet();
+
+    error InsufficientDelarTokens();
 }
