@@ -4,10 +4,9 @@ pragma solidity ^0.8.27;
 import "./libs/Errors.sol";
 import "./libs/Events.sol";
 import "./interface/IERC20.sol";
+import "./interface/INFT.sol";
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
-// Uncomment this line to use console.log
-// import "hardhat/console.sol";
 
 contract DelarContract {
     address tokenAddress;
@@ -136,7 +135,7 @@ contract DelarContract {
         lands[_landOwner][_landIndex].isVerified = true;
 
         //todo: (shaiibu) check this logic
-        IERC1155(nftAddress).mint(_landOwner, _landIndex, lands[_landOwner][_landIndex].numberOfPlots, ['']);
+        INFT(nftAddress).mint(_landOwner, _landIndex, 1, '');
 
         IERC20(tokenAddress).transferFrom(_landOwner, address(this), _delarVerificationCharges);
 
@@ -172,7 +171,7 @@ contract DelarContract {
         }));
 
         // todo: networth
-        emit LandListedForSale(msg.sender, _landIndex, userLand.netWorth, _landPortion);
+        emit Events.LandListedForSale(msg.sender, _landIndex, userLand.netWorth, _landPortion);
     }
 
     function removeLandFromListing(uint _saleIndex) external {
@@ -194,7 +193,7 @@ contract DelarContract {
 
         landsForSale.pop();
 
-        emit LandDelistedForSale(msg.sender, landIndex);
+        emit Events.LandDelistedForSale(msg.sender, landIndex);
     }
 
     function buyLand(uint _saleIndex, address _landOwner, uint _numberOfPlotsToBuy) external {
@@ -213,6 +212,7 @@ contract DelarContract {
 
         sellerLand.numberOfPlots -= _numberOfPlotsToBuy;
         sellerLand.plotsforSale -= _numberOfPlotsToBuy;
+        sellerLand.forSale = false;
         uint _amountSold = sellerLand.netWorth * _numberOfPlotsToBuy;
 
          if(IERC20(tokenAddress).balanceOf(msg.sender) < _amountSold) {
@@ -233,14 +233,14 @@ contract DelarContract {
 
         // 3. If all plots are sold, transfer ownership
         if (sellerLand.numberOfPlots == 0) {
-            //todo (shaiibu): transfer NFT to new owner
+            INFT(nftAddress).safeTransferFrom(_landOwner, msg.sender, _landIndex, 1, '');
+
             delete lands[_landOwner][_landIndex];
             landsForSale[_saleIndex] = landsForSale[landsForSale.length - 1];
             landsForSale.pop();
         }else {
-            //todo(shaiibu): mint new token to owner
-            // i ignored landHistory manipulation, it was leading to loops that was gas inefficient and caused errors [future]
-            IERC1155(nftAddress).mint(_landOwner, _landIndex, lands[_landOwner][_landIndex].numberOfPlots, ['']);
+           
+            INFT(nftAddress).mint(_landOwner, _landIndex, 1, '');
         }
 
         IERC20(tokenAddress).transferFrom(msg.sender, _landOwner, _amountSold);
@@ -277,6 +277,10 @@ contract DelarContract {
 
     function veiwOwnerLands() external view returns(Land[] memory) {
         return lands[msg.sender];
+    }
+
+    function getLandDetails (address _landOwner, uint _landIndex) external view returns (Land memory) {
+        return lands[_landOwner][_landIndex];
     }
     
     function getTotalPoints(
