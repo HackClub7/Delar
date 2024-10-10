@@ -1,33 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import './App.css'
 
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import Home from './components/Home'
+import Root from './Root'
+import BuyersPage from './pages/BuyersPage';
+
+import TransactionHistory from './pages/TransactionHistory';
+import LandDetails from './pages/LandDetails';
+import Register from './pages/Register';
+import MyLands from './pages/MyLands';
+import "../connection";
+import useContract from './hooks/useContract';
+import { useCallback, useEffect, useState } from 'react';
+
 function App() {
-  const [count, setCount] = useState(0)
+  const readOnlyDelarContract = useContract(true);
+  const [lands, setLands] = useState([]);
+
+  const fetchOwnerlands = useCallback(async () => {
+    if(!readOnlyDelarContract) return;
+
+    try {
+        const ownerLands = await readOnlyDelarContract.veiwOwnerLands("0xE859ac304020Dd3039082827d2Cbd25979297BDD")
+        const ownerLandData = { ...ownerLands };
+        console.log(ownerLandData);
+    } catch (error) {
+      console.log("error fetching owner lands:", error);
+    }
+  }, [readOnlyDelarContract]);
+
+  useEffect(() => {
+    fetchOwnerlands();
+  }, [fetchOwnerlands]);
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Root/>}>
+        <Route index element={<Home/>}/>
+        <Route path='/buyerspage' element={<BuyersPage/>}/>
+        <Route path='/land-details' element={<LandDetails/>}/>
+        <Route path='/transactionhistory' element={<TransactionHistory/>}/>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='/MyLands' element={<MyLands/>}/>
+      </Route>
+
+    )
+  )
+ 
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+   <RouterProvider router={router}/>
     </>
   )
 }
