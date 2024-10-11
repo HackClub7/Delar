@@ -51,37 +51,37 @@ const getStatusClasses = (status: string) => {
 
 const TransactionHistory = () => {
   return (
-    <div className="p-4 min-h-screen flex items-center justify-center">
-      <div className="bg-green-200 shadow-md rounded-lg overflow-x-auto w-full max-w-4xl">
-        <h2 className="text-xl font-semibold text-gray-800 p-4 bg-green-300">
-          Transaction History
-        </h2>
+    <div className="flex flex-col md:justify-center md:align-middle items-center mx-10">
+      <h2 className="text-xl font-semibold text-gray-800 p-4">
+        Transaction History
+      </h2>
+      <div className=" rounded-lg overflow-x-auto  h-full max-w-4xl mt-10 mx-4 border-2 p-2">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white table-auto">
             <thead>
-              <tr>
-                <th className="py-2 px-4 bg-green-500 text-left text-white whitespace-nowrap">
+              <tr className="border-b">
+                <th className="py-2 px-4  text-left text-black whitespace-nowrap">
                   Transaction ID
                 </th>
-                <th className="py-2 px-4 bg-green-500 text-left text-white">
+                <th className="py-2 px-4  text-left text-black">
                   Price
                 </th>
-                <th className="py-2 px-4 bg-green-500 text-left text-white">
+                <th className="py-2 px-4  text-left text-black">
                   Location
                 </th>
-                <th className="py-2 px-4 bg-green-500 text-left text-white">
+                <th className="py-2 px-4 text-left text-black">
                   Status
                 </th>
               </tr>
             </thead>
             <tbody>
               {transactions.map((transaction, index) => (
-                <tr key={index} className="border-b">
+                <tr key={index} className="border-y border-[#80A23C]">
                   <td className="py-3 px-4 flex items-center whitespace-nowrap">
                     <img
                       src={land}
                       alt="transaction"
-                      className="w-10 h-10 mr-3"
+                      className="w-10 h-10 mr-3 hidden md:block"
                     />
                     <span className="text-sm">{transaction.id}</span>
                   </td>
