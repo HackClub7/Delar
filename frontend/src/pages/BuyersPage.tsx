@@ -40,9 +40,9 @@ const BuyersPage = () => {
   return (
     <section className="container mx-auto overflow-x-hidden">
       <div className="min-h-screen mt-10 md:mt-0 flex flex-col items-center justify-center">
-        <div className="w-full flex flex-row justify-between ">
+        <div className="w-full flex flex-col  md:flex-row justify-between ">
 
-          <div className=" w-[65%] ml-8">
+          <div className="w-[85%] md:w-[65%] ml-8">
             {/* recently listed */}
             <div className="w-full h-[50%]">
               <p className="text-black mb-4 text-lg md:text-xl">
@@ -117,7 +117,7 @@ const BuyersPage = () => {
           {/* Hottest Land Section */}
           <div className="text-center mr-4">
             <p className="text-black mb-4 text-lg md:text-xl">Hottest Land</p>
-            <div className="relative w-full max-w-xs md:max-w-sm h-[665px] mx-auto">
+            <div className="relative w-full max-w-xs md:max-w-sm h-[400px] md:h-[665px] mx-auto">
               <img
                 className="w-full h-full object-cover rounded-3xl"
                 src={landImage}
