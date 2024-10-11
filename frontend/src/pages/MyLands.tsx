@@ -19,7 +19,7 @@ const MyLands = () => {
     if (!readOnlyDelarContract) return;
 
     try {
-      const ownerLands: Land[] = await readOnlyDelarContract.veiwOwnerLands("0xE859ac304020Dd3039082827d2Cbd25979297BDD");
+      const ownerLands: Land[] = await readOnlyDelarContract.veiwOwnerLands();
       setLands(ownerLands);
     } catch (error) {
       console.log("Error fetching owner lands:", error);

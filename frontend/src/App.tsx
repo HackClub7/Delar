@@ -27,9 +27,9 @@ function App() {
     if(!readOnlyDelarContract) return;
 
     try {
-        const ownerLands = await readOnlyDelarContract.veiwOwnerLands("0xE859ac304020Dd3039082827d2Cbd25979297BDD")
+        const ownerLands = await readOnlyDelarContract.veiwOwnerLands()
         const ownerLandData = { ...ownerLands };
-        console.log(ownerLandData);
+        // console.log(ownerLandData);
     } catch (error) {
       console.log("error fetching owner lands:", error);
     }

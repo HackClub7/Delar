@@ -3,7 +3,15 @@ import img from "../assets/icon.png";
 import land from "../assets/landlocation.png";
 import landOwner from "../assets/landOwner.png";
 
+interface Land {
+  numberOfPlots: number;
+  landLocation: string;
+  titleNumber: string;
+  price: number;
+}
+
 const LandDetails = () => {
+
   return (
     <div className=" flex flex-col justify-center items-center w-full h-full ">
       <div className="flex w-full h-full gap-[10px] justify-center items-center">

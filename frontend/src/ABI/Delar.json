@@ -1,227 +1,572 @@
-[
+
+[{
+  "inputs": [
     {
-      "inputs": [
+      "internalType": "address",
+      "name": "_tokenAddress",
+      "type": "address"
+    },
+    {
+      "internalType": "address",
+      "name": "_nftAddress",
+      "type": "address"
+    }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+},
+{
+  "inputs": [],
+  "name": "InsufficientDelarTokens",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "InvalidLandIndex",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "InvalidLandLocation",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "InvalidNumberOfPlots",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "InvalidTitleNumber",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "LandIsAlreadyForSale",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "LandIsNotValuedYet",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "LandIsNotVerified",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "LandIsVerifiedAlready",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "NotTheOwner",
+  "type": "error"
+},
+{
+  "inputs": [],
+  "name": "TitleExistAlready",
+  "type": "error"
+},
+{
+  "anonymous": false,
+  "inputs": [
+    {
+      "indexed": false,
+      "internalType": "address",
+      "name": "_landOwner",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "_landIndex",
+      "type": "uint256"
+    }
+  ],
+  "name": "LandDelistedForSale",
+  "type": "event"
+},
+{
+  "anonymous": false,
+  "inputs": [
+    {
+      "indexed": false,
+      "internalType": "address",
+      "name": "_landOwner",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "_landIndex",
+      "type": "uint256"
+    },
+    {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "_price",
+      "type": "uint256"
+    },
+    {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "plotsForSell",
+      "type": "uint256"
+    }
+  ],
+  "name": "LandListedForSale",
+  "type": "event"
+},
+{
+  "anonymous": false,
+  "inputs": [
+    {
+      "indexed": false,
+      "internalType": "address",
+      "name": "_landOwner",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "_landIndex",
+      "type": "uint256"
+    },
+    {
+      "indexed": true,
+      "internalType": "string",
+      "name": "_landLocation",
+      "type": "string"
+    }
+  ],
+  "name": "LandRegistered",
+  "type": "event"
+},
+{
+  "anonymous": false,
+  "inputs": [
+    {
+      "indexed": true,
+      "internalType": "address",
+      "name": "_previousOwner",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "internalType": "address",
+      "name": "_newOwner",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "_amount",
+      "type": "uint256"
+    }
+  ],
+  "name": "LandSold",
+  "type": "event"
+},
+{
+  "anonymous": false,
+  "inputs": [
+    {
+      "indexed": true,
+      "internalType": "address",
+      "name": "_landOwner",
+      "type": "address"
+    },
+    {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "_landIndex",
+      "type": "uint256"
+    }
+  ],
+  "name": "LandVerified",
+  "type": "event"
+},
+{
+  "inputs": [
+    {
+      "internalType": "uint256",
+      "name": "_saleIndex",
+      "type": "uint256"
+    },
+    {
+      "internalType": "address",
+      "name": "_landOwner",
+      "type": "address"
+    },
+    {
+      "internalType": "uint256",
+      "name": "_numberOfPlotsToBuy",
+      "type": "uint256"
+    }
+  ],
+  "name": "buyLand",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "address",
+      "name": "_landOwner",
+      "type": "address"
+    },
+    {
+      "internalType": "uint256",
+      "name": "_landIndex",
+      "type": "uint256"
+    },
+    {
+      "internalType": "enum DelarContract.ElectricityIndex",
+      "name": "_electricityIndex",
+      "type": "uint8"
+    },
+    {
+      "internalType": "enum DelarContract.WaterIndex",
+      "name": "_waterIndex",
+      "type": "uint8"
+    },
+    {
+      "internalType": "enum DelarContract.ProximityToTarredRoad",
+      "name": "_proximityIndex",
+      "type": "uint8"
+    },
+    {
+      "internalType": "enum DelarContract.LocationIndex",
+      "name": "_locationIndex",
+      "type": "uint8"
+    }
+  ],
+  "name": "calculateLandNetWorth",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "address",
+      "name": "_landOwner",
+      "type": "address"
+    },
+    {
+      "internalType": "uint256",
+      "name": "_landIndex",
+      "type": "uint256"
+    }
+  ],
+  "name": "getLandDetails",
+  "outputs": [
+    {
+      "components": [
         {
-          "internalType": "address",
-          "name": "_tokenAddress",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidLandIndex",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidLandLocation",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidNumberOfPlots",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidTitleNumber",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "LandIsAlreadyForSale",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "LandIsNotValuedYet",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "LandIsNotVerified",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "LandIsVerifiedAlready",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotTheOwner",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "TitleExistAlready",
-      "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "_landOwner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
           "internalType": "uint256",
-          "name": "_landIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "LandDelistedForSale",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "_landOwner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "_landIndex",
+          "name": "numberOfPlots",
           "type": "uint256"
         },
         {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "_price",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "plotsForSell",
-          "type": "uint256"
-        }
-      ],
-      "name": "LandListedForSale",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "_landOwner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "_landIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
           "internalType": "string",
-          "name": "_landLocation",
+          "name": "landLocation",
           "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "titleNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "netWorth",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "plotsforSale",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isVerified",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "forSale",
+          "type": "bool"
         }
       ],
-      "name": "LandRegistered",
-      "type": "event"
+      "internalType": "struct DelarContract.Land",
+      "name": "",
+      "type": "tuple"
+    }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "enum DelarContract.ElectricityIndex",
+      "name": "_electricityIndex",
+      "type": "uint8"
     },
     {
-      "anonymous": false,
-      "inputs": [
+      "internalType": "enum DelarContract.WaterIndex",
+      "name": "_waterIndex",
+      "type": "uint8"
+    },
+    {
+      "internalType": "enum DelarContract.ProximityToTarredRoad",
+      "name": "_proximityIndex",
+      "type": "uint8"
+    },
+    {
+      "internalType": "enum DelarContract.LocationIndex",
+      "name": "_locationIndex",
+      "type": "uint8"
+    }
+  ],
+  "name": "getTotalPoints",
+  "outputs": [
+    {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+    }
+  ],
+  "stateMutability": "pure",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+    },
+    {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+    }
+  ],
+  "name": "landHistoricalData",
+  "outputs": [
+    {
+      "internalType": "address",
+      "name": "soldFrom",
+      "type": "address"
+    },
+    {
+      "internalType": "address",
+      "name": "soldTo",
+      "type": "address"
+    },
+    {
+      "internalType": "uint256",
+      "name": "amount",
+      "type": "uint256"
+    },
+    {
+      "internalType": "uint256",
+      "name": "numberofPlots",
+      "type": "uint256"
+    },
+    {
+      "internalType": "uint256",
+      "name": "date",
+      "type": "uint256"
+    }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+    }
+  ],
+  "name": "landsForSale",
+  "outputs": [
+    {
+      "internalType": "address",
+      "name": "owner",
+      "type": "address"
+    },
+    {
+      "internalType": "uint256",
+      "name": "landIndex",
+      "type": "uint256"
+    }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "uint256",
+      "name": "_landIndex",
+      "type": "uint256"
+    },
+    {
+      "internalType": "uint256",
+      "name": "_landPortion",
+      "type": "uint256"
+    }
+  ],
+  "name": "listLand",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "uint256",
+      "name": "_numberOfPlots",
+      "type": "uint256"
+    },
+    {
+      "internalType": "string",
+      "name": "_landLocation",
+      "type": "string"
+    },
+    {
+      "internalType": "uint256",
+      "name": "_titleNumber",
+      "type": "uint256"
+    }
+  ],
+  "name": "registerLand",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+    }
+  ],
+  "name": "registeredTitles",
+  "outputs": [
+    {
+      "internalType": "bool",
+      "name": "",
+      "type": "bool"
+    }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "uint256",
+      "name": "_saleIndex",
+      "type": "uint256"
+    }
+  ],
+  "name": "removeLandFromListing",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+},
+{
+  "inputs": [],
+  "name": "userRequestNetWorthValueAppreciation",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+},
+{
+  "inputs": [],
+  "name": "veiwOwnerLands",
+  "outputs": [
+    {
+      "components": [
         {
-          "indexed": true,
-          "internalType": "address",
-          "name": "_landOwner",
-          "type": "address"
+          "internalType": "uint256",
+          "name": "numberOfPlots",
+          "type": "uint256"
         },
         {
-          "indexed": true,
+          "internalType": "string",
+          "name": "landLocation",
+          "type": "string"
+        },
+        {
           "internalType": "uint256",
-          "name": "_landIndex",
+          "name": "titleNumber",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "netWorth",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "plotsforSale",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isVerified",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "forSale",
+          "type": "bool"
         }
       ],
-      "name": "LandVerified",
-      "type": "event"
+      "internalType": "struct DelarContract.Land[]",
+      "name": "",
+      "type": "tuple[]"
+    }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "address",
+      "name": "_landOwner",
+      "type": "address"
     },
     {
-      "inputs": [],
-      "name": "buyLand",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
+      "internalType": "uint256",
+      "name": "_landIndex",
+      "type": "uint256"
+    }
+  ],
+  "name": "verifyLand",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+},
+{
+  "inputs": [],
+  "name": "viewAllListings",
+  "outputs": [
     {
-      "inputs": [],
-      "name": "calculateLandNetWorth",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "landHistoricalData",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "soldFrom",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "soldTo",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "numberofPlots",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "date",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "landsForSale",
-      "outputs": [
+      "components": [
         {
           "internalType": "address",
           "name": "owner",
@@ -233,186 +578,12 @@
           "type": "uint256"
         }
       ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_landIndex",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_landPortion",
-          "type": "uint256"
-        }
-      ],
-      "name": "listLand",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_numberOfPlots",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "_landLocation",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_titleNumber",
-          "type": "uint256"
-        }
-      ],
-      "name": "registerLand",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "registeredTitles",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_saleIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "removeLandFromListing",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "userRequestNetWorthValueAppreciation",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_landOwner",
-          "type": "address"
-        }
-      ],
-      "name": "veiwOwnerLands",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "numberOfPlots",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "landLocation",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "titleNumber",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "netWorth",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "plotsforSale",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bool",
-              "name": "isVerified",
-              "type": "bool"
-            },
-            {
-              "internalType": "bool",
-              "name": "forSale",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct DelarContract.Land[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_landOwner",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_landIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "verifyLand",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "viewAllListings",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "landIndex",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct DelarContract.LandSale[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+      "internalType": "struct DelarContract.LandSale[]",
+      "name": "",
+      "type": "tuple[]"
     }
-  ]
+  ],
+  "stateMutability": "view",
+  "type": "function"
+}
+]
