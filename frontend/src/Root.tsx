@@ -3,12 +3,11 @@ import Navbar from "./components/Navbar"
 
 const Root = () => {
   return (
-    <div className='w-full  min-h-screen overflow-hidden  bg-custom-gradient bg-cover bg-center'>
+    <div className='w-full  min-h-screen overflow-hidden bg-custom-svg bg-cover bg-center'>
         <Navbar/>
         <Outlet/>
 
     </div>
   )
 }
-
 export default Root

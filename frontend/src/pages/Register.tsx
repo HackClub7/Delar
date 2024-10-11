@@ -6,7 +6,6 @@ const Register = () => {
   const handleRegisterLand = useRegisterLand();
 
   const [state, setState] = useState({
-    landDescription:"",
     numberOfPlots: "",
     landLocation: "",
     titleNumber: 0,
@@ -72,7 +71,7 @@ const Register = () => {
           />
         </div>
         {/* land description */}
-        <div className="w-full md:w-[85%] md:h-52">
+        {/* <div className="w-full md:w-[85%] md:h-52">
           <label className="text-xs font-medium">Land Description</label>
           <textarea
             name="message"
@@ -82,12 +81,12 @@ const Register = () => {
             className="bg-gray-200 border border-gray-400 outline-none rounded-lg p-2 focus:ring-2 focus:ring-blue-400"
 
           />
-        </div>
+        </div> */}
 
         <button
           className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-300 transition duration-300 w-full"
           onClick={() =>
-            handleRegisterLand(state.numberOfPlots, state.landLocation, state.titleNumber,state.landDescription)
+            handleRegisterLand(state.numberOfPlots, state.landLocation, state.titleNumber)
           }
         >
           Register Land
