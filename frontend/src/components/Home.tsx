@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="flex flex-col lg:flex-row md:justify-center items-center mt-5 md:mt-0 w-full max-h-screen text-[#5C4033] p-4 lg:p-8">
+    <div className="flex flex-col lg:flex-row md:justify-center items-center md:ml-20 mt-5 md:mt-0  max-h-screen text-[#5C4033] p-4 lg:p-8">
       <div className="lg:w-1/2 w-full lg:pr-8">
         <div className="text-center lg:text-left">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight md:leading-snug lg:leading-[45.5px] mb-4 text-[#5C4033]">
@@ -32,7 +32,7 @@ const Home = () => {
 
         {/* buy land frontend\src\assets\group.png  */}
 
-        <div className="flex flex-row items-center align-middle lg:items-center gap-4 mt-5 md:mt-8 w-full ">
+        <div className="flex flex-row items-center justify-center md:justify-normal align-middle lg:items-center gap-4 mt-5 md:mt-8 w-full  ">
           <Link to={"/buyersPage"}>
             <button className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
               Buy Land
