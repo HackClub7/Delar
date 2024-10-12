@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import img from "../assets/icon.png";
 import land from "../assets/landlocation.png";
 import landOwner from "../assets/landOwner.png";
+import Modal from "../components/Modal";
+import { useEffect, useState } from "react";
 
 interface Land {
   numberOfPlots: number;
@@ -12,8 +14,21 @@ interface Land {
 
 const LandDetails = () => {
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  },[isOpen])
+ const  handle_modalOpen_CLose = () => {
+     setIsOpen((pre:boolean)=> !pre)
+  }
+
   return (
     <div className=" flex flex-col justify-center items-center w-full h-full ">
+      {isOpen && <Modal setIsOpen={setIsOpen} />}
       <div className="flex w-full h-full gap-[10px] justify-center items-center">
         <div className="flex w-[600px] h-[277px] justify-center mr-8 items-center">
           <img src={land} alt=""  className="w-[268px] h-[235px] rounded-[20px]"/>
@@ -30,11 +45,9 @@ const LandDetails = () => {
             <p className="text-sm text-gray-700">Land ID: <br /> PI 234009</p>
             <p>Price:</p>
             <p className="text-xl font-semibold text-green-800 mt-2">+ 1.09 eth</p>
-            <Link to={"/transactionhistory"}>
-              <button className="bg-green-500 text-white mt-2 rounded-md ">
+              <button onClick={handle_modalOpen_CLose} className="bg-green-500 text-white mt-2 rounded-md ">
                 Buy Land
               </button>
-            </Link>
           </div>
         </div>
         <div className="bg-[#6CC838] text-[#ffffff] w-[406px] h-[245px] p-[20px] rounded-[20px] shadow-md flex flex-col">

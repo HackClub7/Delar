@@ -80,7 +80,7 @@ const MyLands = () => {
           lands.map((land, index) => (
             <div
               key={index}
-              className="bg-white border border-black rounded-3xl w-full sm:w-auto h-auto sm:h-auto flex flex-col overflow-hidden"
+              className="bg-white border border-black rounded-3xl w-full sm:w-auto h-auto sm:h-auto flex flex-col overflow-hidden transition-all duration-300 transform group-hover:scale-[0.85] hover:scale-105"
             >
               <div className="text-white text-center w-full h-[60%] ml-1 mt-2">
                 <img src={card} alt="card" className=" h-full object-cover w-full" /> 
