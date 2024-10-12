@@ -5,7 +5,15 @@ import landOwner from "../assets/landOwner.png";
 import Modal from "../components/Modal";
 import { useEffect, useState } from "react";
 
+interface Land {
+  numberOfPlots: number;
+  landLocation: string;
+  titleNumber: string;
+  price: number;
+}
+
 const LandDetails = () => {
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   useEffect(() => {
     if (isOpen) {
@@ -17,6 +25,7 @@ const LandDetails = () => {
  const  handle_modalOpen_CLose = () => {
      setIsOpen((pre:boolean)=> !pre)
   }
+
   return (
     <div className=" flex flex-col justify-center items-center w-full h-full ">
       {isOpen && <Modal setIsOpen={setIsOpen} />}
