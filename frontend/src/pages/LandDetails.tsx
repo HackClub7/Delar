@@ -46,7 +46,7 @@ const LandDetails = () => {
             <p className="text-sm text-gray-700">Land ID: <br /> PI 234009</p>
             <p>Price:</p>
             <p className="text-xl font-semibold text-green-800 mt-2">+ 1.09 eth</p>
-              <button onClick={handle_modalOpen_CLose} className="bg-green-500 text-white mt-2 rounded-md ">
+              <button onClick={handle_modalOpen_CLose} className="bg-red-600 text-white mt-2 rounded-md ">
                 Buy Land
               </button>
           </div>
