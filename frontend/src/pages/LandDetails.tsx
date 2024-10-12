@@ -1,10 +1,9 @@
-// import { Link } from "react-router-dom";
-// import img from "../assets/icon.png";
+
+import img from "../assets/icon.png";
 import land from "../assets/landlocation.png";
 
-import landOwner from "../assets/landOwner.png";
-
 import { useEffect, useState } from "react";
+import Modal from "../components/Modal";
 
 
 
@@ -28,7 +27,7 @@ const LandDetails = () => {
       <div className="mt-8">
         <img src={land} alt=""  className="w-[468px] h-[335px] rounded-[20px]"/>
         <h2 className="text-white">Location</h2>
-
+      </div>
     <div className=" flex flex-col justify-center items-center w-full h-full ">
       {isOpen && <Modal setIsOpen={setIsOpen} />}
       <div className="flex w-full h-full gap-[10px] justify-center items-center">
@@ -117,6 +116,7 @@ const LandDetails = () => {
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
