@@ -1,16 +1,12 @@
-import { Link } from "react-router-dom";
-import img from "../assets/icon.png";
+// import { Link } from "react-router-dom";
+// import img from "../assets/icon.png";
 import land from "../assets/landlocation.png";
+
 import landOwner from "../assets/landOwner.png";
-import Modal from "../components/Modal";
+
 import { useEffect, useState } from "react";
 
-interface Land {
-  numberOfPlots: number;
-  landLocation: string;
-  titleNumber: string;
-  price: number;
-}
+
 
 const LandDetails = () => {
 
@@ -27,6 +23,12 @@ const LandDetails = () => {
   }
 
   return (
+
+    <div className="flex mt-20 gap-20 w-full h-[377px] justify-center items-center">
+      <div className="mt-8">
+        <img src={land} alt=""  className="w-[468px] h-[335px] rounded-[20px]"/>
+        <h2 className="text-white">Location</h2>
+
     <div className=" flex flex-col justify-center items-center w-full h-full ">
       {isOpen && <Modal setIsOpen={setIsOpen} />}
       <div className="flex w-full h-full gap-[10px] justify-center items-center">
@@ -80,54 +82,41 @@ const LandDetails = () => {
         </div>
 
       </div>
-          
-      <div className="text-white w-[1100px] col-span-1 md:col-span-3 mt-6">
-        <h3 className="text-white font-semibold">Land Description</h3>
-        <p className="text-white mt-2">
-          Lorem ipsum dolor sit amet consectetur. Blandit adipiscing lectus
-          odio netus sed nam lobortis amet. Id ut lorem magna iaculis
-          suspendisse eget. Pharetra sed egestas auctor eget. Aliquam
-          sodales quis enim amet blandit in natoque sed elementum.
-        </p>
-      </div>
 
-      <div className="mt-10 gap-8 w-[1145px]">
-        <div className="grid items-center p-8 gap-20 justify-center md:grid-cols-3">
-          <div className="">
-            <h3 className="text-white font-semibold ml-8 mb-2">Chain of Title</h3>
-            <div className="bg-[#6CC838] text-white w-[259px] h-[311px] p-8 rounded-[20px] shadow-md">
-              <h4 className="font-semibold">Current Owner:</h4>
-              <p className="font-medium">Name: Sarah Johnson</p>
-              <p>Acquisition Date: May 15, 2023</p>
-              <p>Transfer Method: Direct Purchase (Smart Contract: 0xA3F..8D91)</p>
-              <p className="mt-2 text-sm text-gray-600">
-                Acquired through a direct sale from the previous owner with
-                verified ownership and no outstanding claims.
-              </p>
-            </div>
-          </div>
-          
-
-          <img src={landOwner} alt=""  className="w-[259px]"/>
-
-          {/* Previous Owners */}
-          <div>
-            <button className="bg-green-500 text-white ml-8 p-2 mb-2 rounded-md">
-              View all previous owners
-            </button>
-            <div className="bg-[#90DE64] text-white w-[259px] h-[300px] p-8 rounded-[20px] shadow-md">
-              <h4 className="font-semibold">Previous Owner:</h4>
-              <p className="font-medium">Name: Sarah Johnson</p>
-              <p>Acquisition Date: May 15, 2023</p>
-              <p>Transfer Method: Direct Purchase (Smart Contract: 0xA3F..8D91)</p>
-              <p className="mt-2 text-sm text-gray-600">
-                Acquired through a direct sale from the previous owner with
-                verified ownership and no outstanding claims.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <table className="w- bg-white  mt-8table-auto">
+        <thead>
+          <tr>
+            <th className="py-2 px-4 bg-green-300 text-left text-white whitespace-nowrap">
+            Number of plots:
+            </th>
+            <th className="py-2 px-4 bg-green-300 text-left text-white">
+            Verified:
+            </th>
+            <th className="py-2 px-4 bg-green-300 text-left text-white whitespace-nowrap">
+              Land ID
+            </th>
+            <th className="py-2 px-4 bg-green-300 text-left text-white">
+              Price
+            </th>
+            <th className="py-2 px-4 bg-green-300 text-left text-white">
+              Location
+            </th>
+            <th className="py-2 px-4 bg-green-300 text-left text-white">
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-b">
+            <td className="py-3 px-4 flex items-center whitespace-nowrap">
+              <span className="text-sm"></span>
+            </td>
+            <td className="py-3 px-4 text-sm"></td>
+            <td className="py-3 px-4 text-sm"></td>
+            <td className="py-3 px-4"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };

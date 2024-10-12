@@ -57,7 +57,7 @@ const BuyersPage = () => {
                   .map((_, index) => (
                     <div
                       key={index}
-                      className="bg-white border border-black rounded-3xl w-full sm:w-auto h-full sm:h-auto flex flex-col overflow-hidden transition-all duration-300 transform group-hover:scale-[0.85] hover:scale-105"
+                      className="bg-white border transition-all duration-300 transform group-hover:scale-[0.85] hover:scale-105 border-black rounded-3xl w-full sm:w-auto h-full sm:h-auto flex flex-col overflow-hidden"
                     >
                       <div className="text-white text-center w-full h-[60%] mt-1">
                         <img src={card} alt="card" className="object-cover h-full w-full" />
