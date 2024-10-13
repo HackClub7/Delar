@@ -43,11 +43,11 @@ const BuyersPage = () => {
   }, [fetchOwnerlands]);
 
   return (
-    <section className="container mx-auto overflow-x-hidden">
+    <section className="container mx-2 md:mx-auto overflow-x-hidden">
       <div className="min-h-screen mt-10 md:mt-0 flex flex-col items-center justify-center">
         <div className="w-full flex flex-row justify-between">
 
-          <div className=" w-[65%] ml-8">
+          <div className="w-[90%] md:w-[65%] md:ml-8">
             <div className="w-full h-[50%]">
               <p className="text-black mb-4 text-lg md:text-xl">Recently Listed</p>
 
@@ -57,10 +57,10 @@ const BuyersPage = () => {
                   .map((_, index) => (
                     <div
                       key={index}
-                      className="bg-white border transition-all duration-300 transform group-hover:scale-[0.85] hover:scale-105 border-black rounded-3xl w-full sm:w-auto h-full sm:h-auto flex flex-col overflow-hidden"
+                      className="bg-white border transition-all duration-300 transform group-hover:scale-[0.85] hover:shadow-2xl hover:mx-2 hover:scale-105 border-black rounded-3xl w-full sm:w-auto h-full  flex flex-col overflow-hidden"
                     >
-                      <div className="text-white text-center w-full h-[60%] mt-1">
-                        <img src={card} alt="card" className="object-cover h-full w-full" />
+                      <div className=" w-[100%] h-[60%] ">
+                        <img src={card} alt="card" className="object-cover h-[100%] w-[100%]" />
                       </div>
                       {lands[index] && (
                         <LandDetails
@@ -75,13 +75,14 @@ const BuyersPage = () => {
                     </div>
                   ))}
               </div>
+
             </div>
 
-            <div className="mt-8 flex flex-col">
-              <p className="text-white p-4 text-lg md:text-xl">Available Leased Lands</p>
+            <div className="mt-14 w-full flex flex-col">
+              <p className="text-black text-center underline font-semibold p-4 text-lg md:text-xl">Available Leased Lands</p>
 
-              <div className="bg-white rounded-2xl w-full md:w-full h-auto mx-auto py-4">
-                <table className="w-full mx-8 text-black" >
+              <div className="  w-full md:w-full h-auto md:mx-auto md:py-4 ">
+                <table className="w-full md:mx-8 text-black" >
                   <thead>
                     <tr>
                       <th className="p-2  text-left">Plots</th>
@@ -94,13 +95,13 @@ const BuyersPage = () => {
                   <tbody>
                     {lands.length === 0 ? (
                       <tr>
-                        <td colSpan={4} className="text-white text-sm text-center py-4">
+                        <td colSpan={4} className="text-black text-sm text-center py-4">
                           No available leased lands
                         </td>
                       </tr>
                     ) : (
                       lands.map((land, index) => (
-                        <tr key={index} className="text-center border-t border-green-300">
+                        <tr key={index} className="text-center border border-green-300">
                           <td className="p-2">{land.numberOfPlots.toString()}</td>
                           <td className="p-2">{land.titleNumber.toString()}</td>
                           <td className="p-2">{land.landLocation.toString()}</td>
@@ -115,8 +116,8 @@ const BuyersPage = () => {
               </div>
             </div>
           </div>
-
-          <div className="text-center mr-4">
+                 {/* hottest land */}
+          <div className="hidden md:block text-center mr-4">
             <p className="text-black mb-4 text-lg md:text-xl">Hottest Land</p>
             <div className="relative w-full max-w-xs md:max-w-sm h-[665px] mx-auto">
               <img className="w-full h-full object-cover rounded-3xl" src={landImage} alt="land" />
