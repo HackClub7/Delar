@@ -1,84 +1,65 @@
-import land from "../assets/landlocation.png";
-
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Modal from "../components/Modal";
+import landImage from "../assets/landlocation.png"; 
 
 const LandDetails = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { state } = useLocation(); 
+  console.log(state);
+  
+  const land = state?.land || {}; 
+
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
-  const handle_modalOpen_CLose = () => {
-    setIsOpen((pre: boolean) => !pre);
-  };
+
+  const handleModalToggle = () => setIsOpen((prev) => !prev);
 
   return (
-    <div className="relative  flex flex-col w-full h-screen px-6 mt-5">
-      {/* buy button */}
+    <div className="relative flex flex-col w-full h-screen px-6 mt-5">
+      {/* Buy Button */}
       <div className="w-full flex justify-end">
         <button
-          onClick={handle_modalOpen_CLose}
-          className=" p-2 md:mr-28 mt-2 rounded-md bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
+          onClick={handleModalToggle}
+          className="p-2 md:mr-28 mt-2 rounded-md bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
         >
           Buy Land
         </button>
       </div>
-
-      {/* section for location and details */}
-      <section className="w-full flex flex-col items-center md:flex-row  mt-10">
-        {/* image and location */}
+      <section className="w-full flex flex-col items-center md:flex-row mt-10">
+     
         <div className="mt-8 md:w-[30%] h-full flex flex-col items-center">
           <img
-            src={land}
-            alt=""
+            src={landImage}
+            alt="Land Location"
             className="w-full object-cover h-[100%] rounded-[20px]"
           />
-          <h2 className="text-black font-bold text-lg">Location</h2>
+          <h2 className="text-black font-bold text-lg mt-2">
+          Location: {land.landLocation?.toString() || ""}
+          </h2>
         </div>
 
-        {/* transaction history */}
-        <div className="w-screen flex justify-start md:ml-6 md:w-[60%] h-full mt-6 md:mt-0 ">
+        {/* Table of Land Details */}
+        <div className="w-screen flex justify-start md:ml-6 md:w-[60%] h-full mt-6 md:mt-0">
           {isOpen && <Modal setIsOpen={setIsOpen} />}
           <table className="w-full bg-white table-auto">
             <thead>
               <tr>
-                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
-                  No.of plots:
-                </th>
-                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
-                  Verified:
-                </th>
-                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
-                  Land ID
-                </th>
-                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
-                  Price
-                </th>
-                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
-                  Status
-                </th>
+                <th className="p-2 text-left">No. of Plots</th>
+                <th className="p-2 text-left">Verified</th>
+                <th className="p-2 text-left">Title Number</th>
+                <th className="p-2 text-left">Net Worth</th>
+                <th className="p-2 text-left">Plots for Sale</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-b">
-                <td className="py-3 px-4 flex  whitespace-nowrap  text-sm ">
-                  <span className="text-sm ">
-                    ddd
-                  </span>
-                </td>
-                <td className="  text-sm whitespace-nowrap">
-                <span className="text-sm ">
-                    ddddd
-                  </span>
-                </td>
-                <td className="py-3 px-4 text-sm">dddddddd</td>
-                <td className="py-3 px-4">dddddd</td>
-                <td className="py-3 px-4">ddddddddddddd</td>
-              
+                <td className="p-2">{land.numberOfPlots?.toString() || ""}</td>
+                <td className="p-2">{land.isVerified ? "Yes" : "No"}</td>
+                <td className="p-2">{land.titleNumber?.toString() || ""}</td>
+                <td className="p-2">{land.netWorth?.toString() || ""}</td>
+                <td className="p-2">{land.plotsforSale?.toString() || ""}</td>
               </tr>
             </tbody>
           </table>
