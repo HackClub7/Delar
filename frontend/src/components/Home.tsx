@@ -1,10 +1,38 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import landOverview from "../assets/landOverview.png";
 import landcover from "../assets/group.png";
 
 import button from "../assets/bottuns.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
+import useRunners from "../hooks/useRunners";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 
 const Home = () => {
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
+  const {signer, provider} = useRunners();
+  const navigate = useNavigate();
+
+
+  useEffect(()=>{
+    if(signer){
+      setIsWalletConnected(true);
+      toast.success("Wallet Connnected Successfully!")
+    } else{
+      setIsWalletConnected(false);
+    }
+
+  },[signer])
+
+  const handleBuyLand =()=>{
+    if(isWalletConnected){
+      navigate("/buyersPage");
+    }else{
+      toast.error("Please Connect to Your Wallet first!");
+    }
+  }
+  
   return (
     <div className="flex flex-col lg:flex-row md:justify-center items-center md:ml-20 mt-5 md:mt-0  max-h-screen text-[#5C4033] p-4 lg:p-8">
       <div className="lg:w-1/2 w-full lg:pr-8">
@@ -29,15 +57,12 @@ const Home = () => {
          
        </div>
 
-
-        {/* buy land frontend\src\assets\group.png  */}
-
         <div className="flex flex-row items-center justify-center md:justify-normal align-middle lg:items-center gap-4 mt-5 md:mt-8 w-full  ">
-          <Link to={"/buyersPage"}>
-            <button className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+          
+            <button onClick={handleBuyLand} className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
               Buy Land
             </button>
-          </Link>
+       
           <img src={button} alt="" className="block w-20 sm:w-28 md:w-28 h-auto" />
           <Link to={"/register"}>
           <button className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
