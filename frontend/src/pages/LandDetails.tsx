@@ -17,55 +17,73 @@ const LandDetails = () => {
   };
 
   return (
-    <div className="flex mt-20 gap-20 w-full h-[377px] justify-center items-center">
-      <div className="mt-8">
-        <img src={land} alt="" className="w-[468px] h-[335px] rounded-[20px]" />
-        <h2 className="text-white">Location</h2>
-      </div>
-      <div className=" flex flex-col justify-center items-center w-full h-full ">
-        {isOpen && <Modal setIsOpen={setIsOpen} />}
-        <table className="w- bg-white  mt-8table-auto">
-          <thead>
-            <tr>
-              <th className="py-2 px-4 bg-green-300 text-left text-white whitespace-nowrap">
-                Number of plots:
-              </th>
-              <th className="py-2 px-4 bg-green-300 text-left text-white">
-                Verified:
-              </th>
-              <th className="py-2 px-4 bg-green-300 text-left text-white whitespace-nowrap">
-                Land ID
-              </th>
-              <th className="py-2 px-4 bg-green-300 text-left text-white">
-                Price
-              </th>
-              <th className="py-2 px-4 bg-green-300 text-left text-white">
-                Location
-              </th>
-              <th className="py-2 px-4 bg-green-300 text-left text-white">
-                Status
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b">
-              <td className="py-3 px-4 flex items-center whitespace-nowrap">
-                <span className="text-sm"></span>
-              </td>
-              <td className="py-3 px-4 text-sm"></td>
-              <td className="py-3 px-4 text-sm"></td>
-              <td className="py-3 px-4"></td>
-            </tr>
-          </tbody>
-        </table>
-
+    <div className="relative  flex flex-col w-full h-screen px-6 mt-5">
+      {/* buy button */}
+      <div className="w-full flex justify-end">
         <button
           onClick={handle_modalOpen_CLose}
-          className="bg-green-200 text-white mt-2 rounded-md "
+          className=" p-2 md:mr-28 mt-2 rounded-md bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
         >
           Buy Land
         </button>
       </div>
+
+      {/* section for location and details */}
+      <section className="w-full flex flex-col items-center md:flex-row  mt-10">
+        {/* image and location */}
+        <div className="mt-8 md:w-[30%] h-full flex flex-col items-center">
+          <img
+            src={land}
+            alt=""
+            className="w-full object-cover h-[100%] rounded-[20px]"
+          />
+          <h2 className="text-black font-bold text-lg">Location</h2>
+        </div>
+
+        {/* transaction history */}
+        <div className="w-screen flex justify-start md:ml-6 md:w-[60%] h-full mt-6 md:mt-0 ">
+          {isOpen && <Modal setIsOpen={setIsOpen} />}
+          <table className="w-full bg-white table-auto">
+            <thead>
+              <tr>
+                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
+                  No.of plots:
+                </th>
+                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
+                  Verified:
+                </th>
+                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
+                  Land ID
+                </th>
+                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
+                  Price
+                </th>
+                <th className="md:py-2 md:px-4 p-2 text-sm md:text-base bg-black text-left text-white whitespace-nowrap">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b">
+                <td className="py-3 px-4 flex  whitespace-nowrap  text-sm ">
+                  <span className="text-sm ">
+                    ddd
+                  </span>
+                </td>
+                <td className="  text-sm whitespace-nowrap">
+                <span className="text-sm ">
+                    ddddd
+                  </span>
+                </td>
+                <td className="py-3 px-4 text-sm">dddddddd</td>
+                <td className="py-3 px-4">dddddd</td>
+                <td className="py-3 px-4">ddddddddddddd</td>
+              
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
 };
