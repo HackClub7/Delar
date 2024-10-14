@@ -38,11 +38,9 @@ const BuyersPage = () => {
   useEffect(() => {
     fetchOwnerlands();
   }, [fetchOwnerlands]);
-
+  
   const handleSeeDetails = (land: Land) => {
     navigate("/land-details", { state: land  });
-    console.log("selected land", land);
-    
   };
 
   return (
