@@ -36,13 +36,13 @@ const LandDetails = () => {
             className="w-full object-cover h-[100%] rounded-[20px]"
           />
           <h2 className="text-black font-bold text-lg mt-2">
-          Location: {land.landLocation?.toString() || ""}
+          Location: {land.landLocation?.toString() || "Jos North"}
           </h2>
         </div>
 
         {/* Table of Land Details */}
         <div className="w-screen flex justify-start md:ml-6 md:w-[60%] h-full mt-6 md:mt-0">
-          {isOpen && <Modal setIsOpen={setIsOpen} />}
+          {isOpen && <Modal setIsOpen={setIsOpen} saleIndex={0} landOwner={""} plotsToBuy={0} />}
           <table className="w-full bg-white table-auto">
             <thead>
               <tr>
@@ -55,11 +55,11 @@ const LandDetails = () => {
             </thead>
             <tbody>
               <tr className="border-b">
-                <td className="p-2">{land.numberOfPlots?.toString() || ""}</td>
+                <td className="p-2">{land.numberOfPlots?.toString() || "45"}</td>
                 <td className="p-2">{land.isVerified ? "Yes" : "No"}</td>
-                <td className="p-2">{land.titleNumber?.toString() || ""}</td>
-                <td className="p-2">{land.netWorth?.toString() || ""}</td>
-                <td className="p-2">{land.plotsforSale?.toString() || ""}</td>
+                <td className="p-2">{land.titleNumber?.toString() || "123"}</td>
+                <td className="p-2">{land.netWorth?.toString() || "50"}</td>
+                <td className="p-2">{land.plotsforSale?.toString() || "yes"}</td>
               </tr>
             </tbody>
           </table>

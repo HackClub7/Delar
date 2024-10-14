@@ -59,14 +59,14 @@ const Home = () => {
 
         <div className="flex flex-row items-center justify-center md:justify-normal align-middle lg:items-center gap-4 mt-5 md:mt-8 w-full  ">
           
-            <button onClick={handleBuyLand} className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-              Buy Land
+            <button onClick={handleBuyLand} className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg- px-6 py-1  rounded-lg bg-[#5C4033] text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+              View All Land
             </button>
        
           <img src={button} alt="" className="block w-20 sm:w-28 md:w-28 h-auto" />
           <Link to={"/register"}>
-          <button className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-              Sell Land
+          <button className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 px-6 py-1  rounded-lg bg-[#5C4033] text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+              Register Land
             </button>
           </Link>
         </div>
