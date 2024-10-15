@@ -1,5 +1,5 @@
 import LandDetails from "../components/LandDetails";
-import card from "../assets/land 4.svg";
+import card from "../assets/land1.jpg";
 import useContract from '../hooks/useContract';
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from "react-toastify";

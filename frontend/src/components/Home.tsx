@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import landOverview from "../assets/landOverview.png";
+import landOverview from "../assets/land2.jpg";
 import landcover from "../assets/group.png";
 
 import button from "../assets/bottuns.png";

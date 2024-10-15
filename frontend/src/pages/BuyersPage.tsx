@@ -1,5 +1,5 @@
-import card from "../assets/land3.svg";
-import landImage from "../assets/land2.svg";
+import card from "../assets/land1.jpg";
+import landImage from "../assets/land2.jpg";
 import LandDetails from "../components/LandDetails";
 import useContract from "../hooks/useContract";
 import { useCallback, useEffect, useState } from "react";
