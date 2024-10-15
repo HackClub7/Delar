@@ -5,6 +5,7 @@ import landImage from "../assets/landlocation.png";
 
 const LandDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
+  
   const { state } = useLocation(); 
   console.log(state);
   
@@ -13,11 +14,12 @@ const LandDetails = () => {
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
-
+  // animation effect
+  
   const handleModalToggle = () => setIsOpen((prev) => !prev);
 
   return (
-    <div className="relative flex flex-col w-full h-screen mt-5 ml-20">
+    <div className="relative flex flex-col w-[90%] h-screen mt-5  transform transition-transform duration-500 ease-in-out mb-8 md:mb-0">
       {/* Buy Button */}
       <div className="w-full flex justify-end">
         <button

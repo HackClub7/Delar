@@ -57,7 +57,7 @@ const Home = () => {
          />
        </div>
 
-        <div className="flex flex-col md:block hidden md:justify-normal align-middle md:mt-8 lg:w-[407.8px] h-[422.28px] gap-[20px] ">
+        <div className=" flex-col md:block hidden md:justify-normal align-middle md:mt-8 lg:w-[407.8px] h-[422.28px] gap-[20px] ">
           <button onClick={handleBuyLand} className="w-[183px] h-[47px] top-[56.92px] left-[110.7px] md:px-8 md:text-base text-sm md:py-3 bg-white border-[1px] p-[10px 30px] rounded-[12px] bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
             Buy Land
           </button>
@@ -77,7 +77,7 @@ const Home = () => {
           <img
             src={landcover}
             alt="Land Block"
-            className="lg:w-[560px] md:w-[400px] lg:h-[510px]"
+            className="lg:w-[560px] md:w-[400px] lg:h-[410px]"
           />
         </div>
       </div>
