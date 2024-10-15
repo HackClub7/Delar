@@ -14,6 +14,7 @@ import BuyersPage from './pages/BuyersPage';
 import TransactionHistory from './pages/TransactionHistory';
 import LandDetails from './pages/LandDetails';
 import Register from './pages/Register';
+import DashBoard from './pages/Dashboard/DashBoard';
 import MyLands from './pages/MyLands';
 import "../connection";
 import useContract from './hooks/useContract';
@@ -48,6 +49,7 @@ function App() {
         <Route path='/transactionhistory' element={<TransactionHistory/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/MyLands' element={<MyLands/>}/>
+        <Route path='/dashboard' element={<DashBoard/>}/>
       </Route>
 
     )

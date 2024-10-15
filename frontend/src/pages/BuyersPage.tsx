@@ -1,5 +1,5 @@
-import card from "../assets/land3.svg";
-import landImage from "../assets/land2.svg";
+import card from "../assets/land3.png";
+import landImage from "../assets/land2.png";
 import LandDetails from "../components/LandDetails";
 import useContract from "../hooks/useContract";
 import { useCallback, useEffect, useState } from "react";
@@ -38,18 +38,17 @@ const BuyersPage = () => {
   useEffect(() => {
     fetchOwnerlands();
   }, [fetchOwnerlands]);
-
+  
   const handleSeeDetails = (land: Land) => {
     navigate("/land-details", { state: land  });
-    console.log("selected land", land);
-    
   };
 
   return (
-    <section className="container mx-auto overflow-x-hidden">
-      <div className="min-h-screen mt-10 md:mt-0 flex flex-col items-center justify-center">
+    <section className="container mx-2 md:mx-auto overflow-x-hidden">
+      <div className="min-h-screen gap-4 mt-10 md:mt-0 flex flex-col items-center justify-center">
         <div className="w-full flex flex-row justify-between">
-          <div className=" w-[65%] ml-8">
+
+          <div className="w-[90%] md:w-[65%] md:ml-8">
             <div className="w-full h-[50%]">
               <p className="text-black mb-4 text-lg md:text-xl">
                 Recently Listed
@@ -61,14 +60,12 @@ const BuyersPage = () => {
                   .map((land, index) => (
                     <div
                       key={index}
-                      className="bg-white border transition-all duration-300 transform group-hover:scale-[0.85] hover:scale-105 border-black rounded-3xl w-full sm:w-auto h-full sm:h-auto flex flex-col overflow-hidden"
+                      className="bg-white border transition-all duration-300 transform group-hover:scale-[0.85] hover:shadow-2xl hover:mx-2 hover:scale-105 border-black rounded-2xl w-full sm:w-auto h-full  flex flex-col overflow-hidden"
                     >
-                      <div className="text-white text-center w-full h-[60%] mt-1">
-                        <img
-                          src={card}
-                          alt="card"
-                          className="object-cover h-full w-full"
-                        />
+
+                      <div className=" w-[100%] h-[85%] ">
+                        <img src={card} alt="card" className="object-cover h-[100%] w-[100%]" />
+
                       </div>
                       {lands[index] && (
                         <LandDetails
@@ -80,22 +77,20 @@ const BuyersPage = () => {
                         />
                       )}
                       <div className="flex items-center  w-full text-black justify-end mb-3">
-                        <button onClick={()=>handleSeeDetails(land)} className="border border-black  rounded-2xl p-3 text-xs md:text-sm hover:bg-[#C3A46B] hover:text-black transition duration-300">
+                        <button onClick={()=>handleSeeDetails(land)} className="border border-black  md:rounded-2xl md:m-4 p-3 text-xs md:text-sm hover:bg-[#C3A46B] hover:text-black transition duration-300">
                           See Details
                         </button>
                       </div>
                     </div>
                   ))}
               </div>
+
             </div>
+            <div className="mt-14 w-full flex flex-col">
+              <h4 className="text-black text-center underline font-semibold p-4 text-lg md:text-xl">Available Leased Lands</h4>
 
-            <div className="mt-8 flex flex-col">
-              <p className="text-white p-4 text-lg md:text-xl">
-                Available Leased Lands
-              </p>
-
-              <div className="bg-white rounded-2xl w-full md:w-full h-auto mx-auto py-4">
-                <table className="w-full mx-8 text-black">
+              <div className="  w-full md:w-full h-auto md:mx-auto md:py-4 ">
+                <table className="w-full md:mx-8 text-black" >
                   <thead>
                     <tr>
                       <th className="p-2  text-left">Plots</th>
@@ -107,22 +102,16 @@ const BuyersPage = () => {
                   <tbody>
                     {lands.length === 0 ? (
                       <tr>
-                        <td
-                          colSpan={4}
-                          className="text-white text-sm text-center py-4"
-                        >
+
+                        <td colSpan={4} className="text-black text-sm text-center py-4">
                           No available leased lands
                         </td>
                       </tr>
                     ) : (
                       lands.map((land, index) => (
-                        <tr
-                          key={index}
-                          className="text-center border-t border-green-300"
-                        >
-                          <td className="p-2">
-                            {land.numberOfPlots.toString()}
-                          </td>
+
+                        <tr key={index} className="text-center border border-green-300">
+                          <td className="p-2">{land.numberOfPlots.toString()}</td>
                           <td className="p-2">{land.titleNumber.toString()}</td>
                           <td className="p-2">
                             {land.landLocation.toString()}
@@ -136,11 +125,12 @@ const BuyersPage = () => {
               </div>
             </div>
           </div>
-
-          <div className="text-center mr-4">
-            <div className="relative w-full max-w-xs md:max-w-sm h-[665px] mx-auto">
+                 {/* hottest land */}
+          <div className="hidden md:block md:ml-8 text-center lg:mr-4">
+            <p className="text-black mb-4 text-lg md:text-xl">Hottest Land</p>
+            <div className="relative w-full max-w-xs md:max-w-sm h-[615px] mx-auto">
               <img
-                className="w-full h-full object-cover rounded-3xl"
+                className="w-[350px] h-[615px] object-cover rounded-1xl"
                 src={landImage}
                 alt="land"
               />
