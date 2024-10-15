@@ -53,19 +53,15 @@ const Home = () => {
            alt="Land Overview"
            className="rounded-lg w-full h-auto border-2 p-2 bg-white"
          />
-        
-         
        </div>
 
         <div className="flex flex-row items-center justify-center md:justify-normal align-middle lg:items-center gap-4 mt-5 md:mt-8 w-full  ">
-          
-            <button onClick={handleBuyLand} className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-              Buy Land
-            </button>
-       
+          <button onClick={handleBuyLand} className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+            Buy Land
+          </button>
           <img src={button} alt="" className="block w-20 sm:w-28 md:w-28 h-auto" />
           <Link to={"/register"}>
-          <button className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+            <button className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
               Sell Land
             </button>
           </Link>
@@ -76,12 +72,10 @@ const Home = () => {
       <div className="lg:w-2/4 w-full">
         {/* land display for deskstop view */}
         <div className="hidden w-full h-96  md:flex justify-center align-middle items-center">
-          
-          
           <img
             src={landcover}
             alt="Land Block"
-            className="rounded-lg object-contain h-full p-2"
+            className="rounded-lg object-contain w-full h-full p-2"
           />
         </div>
       </div>

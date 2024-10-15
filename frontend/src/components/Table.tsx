@@ -28,12 +28,11 @@ const Table = () => {
               <h2 className="font-light">James victor</h2>
             </td>
             <td className="px-1 md:px-4 py-2 text-gray-800 border-b">Pending</td>
-                      <td className="px-4 py-2 text-gray-800 border-b ">
-                          <p className="bg-green-400 text-center text-xs md:text-lg rounded-2xl py-2 text-white">
-                          unlisted
-                          </p>
-                          
-                      </td>
+              <td className="px-4 py-2 text-gray-800 border-b ">
+                <p className="bg-green-400 text-center text-xs md:text-lg rounded-2xl py-2 text-white">
+                unlisted
+                </p> 
+              </td>
             <td className="hidden md:block px-1 md:px-4 py-2 text-xs md:text-xl text-gray-800 border-b">Jan 24 2024</td>
             <td className="px-1 md:px-4 py-2 text-gray-800 border-b">
               <button className="py-1 px-3 rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">

@@ -17,7 +17,7 @@ const LandDetails = () => {
   const handleModalToggle = () => setIsOpen((prev) => !prev);
 
   return (
-    <div className="relative flex flex-col w-full h-screen px-6 mt-5">
+    <div className="relative flex flex-col w-full h-screen mt-5 ml-20">
       {/* Buy Button */}
       <div className="w-full flex justify-end">
         <button
