@@ -77,7 +77,7 @@ const BuyersPage = () => {
                         />
                       )}
                       <div className="flex items-center  w-full text-black justify-end mb-3">
-                        <button onClick={()=>handleSeeDetails(land)} className="border border-black  rounded-2xl m-4 p-3 text-xs md:text-sm hover:bg-[#C3A46B] hover:text-black transition duration-300">
+                        <button onClick={()=>handleSeeDetails(land)} className="border border-black  md:rounded-2xl md:m-4 p-3 text-xs md:text-sm hover:bg-[#C3A46B] hover:text-black transition duration-300">
                           See Details
                         </button>
                       </div>
@@ -126,7 +126,7 @@ const BuyersPage = () => {
             </div>
           </div>
                  {/* hottest land */}
-          <div className="hidden md:block text-center mr-4">
+          <div className="hidden md:block md:ml-8 text-center lg:mr-4">
             <p className="text-black mb-4 text-lg md:text-xl">Hottest Land</p>
             <div className="relative w-full max-w-xs md:max-w-sm h-[615px] mx-auto">
               <img

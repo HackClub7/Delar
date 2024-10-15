@@ -21,7 +21,7 @@ const Navbar = () => {
     <div className="flex items-center justify-between p-3 md:p-10  md:mx-16 ">
       <Link to="/" onClick={handleLinkClick} className="">
         <span className="flex items-center gap-2 text-3xl font-bold text-white w-40w">
-          <img src={logo} alt="logo" className="w-[36.5px] h-32px"/>
+          <img src={logo} alt="logo" className="w-[36.5px] h-[32px] " />
           <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-[#a47f6e] to-[#5C4033]">
           DeLaR
           </h2>
@@ -29,12 +29,12 @@ const Navbar = () => {
         </span>
       </Link>
 
-      <div className="md:hidden flex items-center m-4">
+      <div className="md:hidden flex items-center">
         <button onClick={toggleMenu} aria-label="Toggle menu">
           {isOpen ? (
-            <HiX className="text-black w-4 h-6" />
+            <HiX className="text-black w-6 h-6" />
           ) : (
-            <HiMenu className="text-black w-4 h-6" />
+            <HiMenu className="text-black w-6 h-6" />
           )}
         </button>
       </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
         <w3m-button />
       </div>
 
-      <div className="hidden md:flex md:flex-row md:gap-10 ml-[775px] items-center">
+      <div className="hidden md:flex md:flex-row md:gap-10 items-center">
         <w3m-button />
       </div>
 
