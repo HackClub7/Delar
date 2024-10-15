@@ -1,6 +1,6 @@
 
 
-import land from "../assets/landbloc.png";
+import land from "../assets/land3.jpg";
 
 interface Transaction {
   id: string;
