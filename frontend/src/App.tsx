@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Home from './components/Home'
 import Root from './Root'
-import BuyersPage from './pages/AllLands';
+import BuyersPage from './pages/BuyersPage';
 
 import TransactionHistory from './pages/TransactionHistory';
 import LandDetails from './pages/LandDetails';
@@ -18,7 +18,6 @@ import MyLands from './pages/MyLands';
 import "../connection";
 import useContract from './hooks/useContract';
 import { useCallback, useEffect, useState } from 'react';
-import LandListing from './pages/LandListing';
 
 function App() {
   const readOnlyDelarContract = useContract(true);
@@ -49,8 +48,6 @@ function App() {
         <Route path='/transactionhistory' element={<TransactionHistory/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/MyLands' element={<MyLands/>}/>
-        <Route path='/landListing' element={<LandListing/>}/>
-
       </Route>
 
     )
