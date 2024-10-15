@@ -17,12 +17,12 @@ const LandDetails = () => {
   const handleModalToggle = () => setIsOpen((prev) => !prev);
 
   return (
-    <div className="relative flex flex-col w-full h-screen px-6 mt-5">
+    <div className="relative flex flex-col w-full h-screen mt-5 ml-20">
       {/* Buy Button */}
       <div className="w-full flex justify-end">
         <button
           onClick={handleModalToggle}
-          className="p-2 md:mr-28 mt-2 rounded-md bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
+          className="p-2 md:mr-[158px] mt-2 rounded-md bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
         >
           Buy Land
         </button>

@@ -17,7 +17,7 @@ const DashBoard = () => {
         <div className="mt-10">
           <h2 className="text-[#5C4033] font-bold text-2xl md:text-3xl ml-8 md:ml-0">Registered lands</h2>
           <div className=" w-full md:w-[70%] mt-6">
-              <Table/>
+            <Table/>
            </div>
         </div>
       </div>

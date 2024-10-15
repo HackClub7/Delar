@@ -2,7 +2,7 @@
 import landOverview from "../assets/land2.jpg";
 import landcover from "../assets/group.png";
 
-import button from "../assets/bottuns.png";
+import button from "../assets/btn.png";
 import { Link, useNavigate} from "react-router-dom";
 import useRunners from "../hooks/useRunners";
 import { useEffect, useState } from "react";
@@ -34,16 +34,18 @@ const Home = () => {
   }
   
   return (
-    <div className="flex flex-col lg:flex-row md:justify-center items-center md:ml-20 mt-5 md:mt-0  max-h-screen text-[#5C4033] p-4 lg:p-8">
-      <div className="lg:w-1/2 w-full lg:pr-8">
-        <div className="text-center lg:text-left">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight md:leading-snug lg:leading-[45.5px] mb-4 text-[#5C4033]">
+    <div className="flex md:justify-center md:w-[1250px]  h-auto mt-[2px] lg:gap-[8px] p-4">
+      <div className="w-[497.8px] h-[515.28px] gap-[8px] ">
+        <div className="max-w-full md:max-w-md lg:max-w-lg h-auto gap-6 md:gap-8 mt-8">
+          <h2 className=" w-[323px]  text-lg sm:text-xl md:text-3xl lg:text-4xl font-normal leading-snug sm:leading-tight md:leading-snug lg:leading-tight tracking-tight text-left">
             Revolutionizing Land Ownership with Blockchain
           </h2>
-          <p className="text-sm md:text-lg lg:text-xl mb-8">
+          <p className="w-[323px] text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-snug sm:leading-relaxed md:leading-relaxed tracking-tight text-left">
             Secure, transparent, and borderless land transactions, powered by smart contracts
           </p>
         </div>
+
+
 
         {/* land images on mobile screen */}
         <div className="relative lg:grid-cols-2 grid md:hidden  grid-cols-1 md:grid-cols-2 gap-4">
@@ -51,21 +53,17 @@ const Home = () => {
          <img
            src={landOverview}
            alt="Land Overview"
-           className="rounded-lg w-full h-auto border-2 p-2 bg-white"
+           className="rounded-lg w-full h-auto border-20 bg-white"
          />
-        
-         
        </div>
 
-        <div className="flex flex-row items-center justify-center md:justify-normal align-middle lg:items-center gap-4 mt-5 md:mt-8 w-full  ">
-          
-            <button onClick={handleBuyLand} className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-              Buy Land
-            </button>
-       
-          <img src={button} alt="" className="block w-20 sm:w-28 md:w-28 h-auto" />
+        <div className="flex flex-col md:block hidden md:justify-normal align-middle md:mt-8 lg:w-[407.8px] h-[422.28px] gap-[20px] ">
+          <button onClick={handleBuyLand} className="w-[183px] h-[47px] top-[56.92px] left-[110.7px] md:px-8 md:text-base text-sm md:py-3 bg-white border-[1px] p-[10px 30px] rounded-[12px] bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+            Buy Land
+          </button>
+          <img src={button} alt="" className="block ml-[30px] w-310px sm:w-28 md:w-28 h-[80px]" />
           <Link to={"/register"}>
-          <button className="w-full lg:w-auto md:px-8 md:text-base text-sm md:py-3 bg-white px-6 py-1  rounded-lg bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+            <button className="w-[183px] h-[47px] top-[301.92px] left-[110.7px] md:px-8 md:text-base text-sm md:py-3 bg-white border-[1px] p-[10px 30px] rounded-[12px] bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
               Sell Land
             </button>
           </Link>
@@ -73,15 +71,13 @@ const Home = () => {
       </div>
 
          {/* land images */}
-      <div className="lg:w-2/4 w-full">
+      <div className="lg:block md:hidden hidden">
         {/* land display for deskstop view */}
-        <div className="hidden w-full h-96  md:flex justify-center align-middle items-center">
-          
-          
+        <div className=" rounded-[20px]">
           <img
             src={landcover}
             alt="Land Block"
-            className="rounded-lg object-contain h-full p-2"
+            className="lg:w-[560px] md:w-[400px] lg:h-[510px]"
           />
         </div>
       </div>
