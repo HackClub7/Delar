@@ -59,13 +59,12 @@ const MyLands = () => {
                 <img src={card} alt="card" className=" h-full object-cover w-full" /> 
               </div>
               <LandDetails
-                          numberOfPlots={Number(lands[index].numberOfPlots)} 
-                          landLocation={lands[index].landLocation.toString()}    
-                          titleNumber={lands[index].titleNumber.toString()}
-                          plotForSale={lands[index].plotsforSale.toString()}     
-                          netWorth={Number(lands[index].netWorth)}   
-                                     
-                        />
+                numberOfPlots={Number(lands[index].numberOfPlots)} 
+                landLocation={lands[index].landLocation.toString()}    
+                titleNumber={lands[index].titleNumber.toString()}
+                plotForSale={lands[index].plotsforSale.toString()}     
+                netWorth={Number(lands[index].netWorth)}             
+              />
             </div>
           ))
         )}

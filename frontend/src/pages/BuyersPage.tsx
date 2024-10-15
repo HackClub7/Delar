@@ -1,5 +1,5 @@
-import card from "../assets/land3.svg";
-import landImage from "../assets/land2.svg";
+import card from "../assets/land3.png";
+import landImage from "../assets/land2.png";
 import LandDetails from "../components/LandDetails";
 import useContract from "../hooks/useContract";
 import { useCallback, useEffect, useState } from "react";
@@ -45,7 +45,7 @@ const BuyersPage = () => {
 
   return (
     <section className="container mx-2 md:mx-auto overflow-x-hidden">
-      <div className="min-h-screen mt-10 md:mt-0 flex flex-col items-center justify-center">
+      <div className="min-h-screen gap-4 mt-10 md:mt-0 flex flex-col items-center justify-center">
         <div className="w-full flex flex-row justify-between">
 
           <div className="w-[90%] md:w-[65%] md:ml-8">
@@ -60,10 +60,10 @@ const BuyersPage = () => {
                   .map((land, index) => (
                     <div
                       key={index}
-                      className="bg-white border transition-all duration-300 transform group-hover:scale-[0.85] hover:shadow-2xl hover:mx-2 hover:scale-105 border-black rounded-3xl w-full sm:w-auto h-full  flex flex-col overflow-hidden"
+                      className="bg-white border transition-all duration-300 transform group-hover:scale-[0.85] hover:shadow-2xl hover:mx-2 hover:scale-105 border-black rounded-2xl w-full sm:w-auto h-full  flex flex-col overflow-hidden"
                     >
 
-                      <div className=" w-[100%] h-[60%] ">
+                      <div className=" w-[100%] h-[85%] ">
                         <img src={card} alt="card" className="object-cover h-[100%] w-[100%]" />
 
                       </div>
@@ -77,7 +77,7 @@ const BuyersPage = () => {
                         />
                       )}
                       <div className="flex items-center  w-full text-black justify-end mb-3">
-                        <button onClick={()=>handleSeeDetails(land)} className="border border-black  rounded-2xl p-3 text-xs md:text-sm hover:bg-[#C3A46B] hover:text-black transition duration-300">
+                        <button onClick={()=>handleSeeDetails(land)} className="border border-black  rounded-2xl m-4 p-3 text-xs md:text-sm hover:bg-[#C3A46B] hover:text-black transition duration-300">
                           See Details
                         </button>
                       </div>
@@ -87,7 +87,7 @@ const BuyersPage = () => {
 
             </div>
             <div className="mt-14 w-full flex flex-col">
-              <p className="text-black text-center underline font-semibold p-4 text-lg md:text-xl">Available Leased Lands</p>
+              <h4 className="text-black text-center underline font-semibold p-4 text-lg md:text-xl">Available Leased Lands</h4>
 
               <div className="  w-full md:w-full h-auto md:mx-auto md:py-4 ">
                 <table className="w-full md:mx-8 text-black" >
@@ -128,9 +128,9 @@ const BuyersPage = () => {
                  {/* hottest land */}
           <div className="hidden md:block text-center mr-4">
             <p className="text-black mb-4 text-lg md:text-xl">Hottest Land</p>
-            <div className="relative w-full max-w-xs md:max-w-sm h-[665px] mx-auto">
+            <div className="relative w-full max-w-xs md:max-w-sm h-[615px] mx-auto">
               <img
-                className="w-full h-full object-cover rounded-3xl"
+                className="w-[350px] h-[615px] object-cover rounded-1xl"
                 src={landImage}
                 alt="land"
               />
