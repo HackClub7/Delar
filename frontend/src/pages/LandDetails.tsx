@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import landImage from "../assets/landlocation.png";
@@ -27,16 +26,18 @@ const LandDetails = () => {
     } else {
       navigate("/");
     }
-  }, [navigate]);
+  }, [navigate,state]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
 
+  if (!land) return <p>Loading...</p>;
+
   const handleModalToggle = () => setIsOpen((prev) => !prev);
 
   return (
-    <div className="relative flex flex-col w-full h-screen mt-5 ml-20">
+    <div className="relative flex flex-col w-full h-screen px-4 sm:px-6 lg:px-20 mt-5">
       {/* Buy Button */}
       <div className="w-full flex justify-end">
         <button
