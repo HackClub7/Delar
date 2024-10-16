@@ -25,7 +25,6 @@ const Navbar = () => {
           <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-[#a47f6e] to-[#5C4033]">
           DeLaR
           </h2>
-        
         </span>
       </Link>
 

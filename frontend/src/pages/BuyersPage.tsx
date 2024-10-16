@@ -1,6 +1,5 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import card from "../assets/land1.jpg";
-import landImage from "../assets/land2.jpg";
 import LandDetails from "../components/LandDetails";
 import useContract from "../hooks/useContract";
 import { useCallback, useEffect, useState } from "react";
@@ -18,6 +17,7 @@ interface Land {
 
 const BuyersPage = () => {
   const readOnlyDelarContract = useContract(true);
+  const [visible, setVisible] = useState<boolean>(false);
   const [lands, setLands] = useState<Land[]>([]);
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const BuyersPage = () => {
       const ownerLandsResult = [...ownerLands];
 
       setLands(ownerLandsResult);
-    
+      console.log(ownerLandsResult);
     } catch (error) {
       console.error("Error fetching owner lands:", error);
       toast.error("Failed to fetch land, please try again later");
@@ -39,34 +39,67 @@ const BuyersPage = () => {
   useEffect(() => {
     fetchOwnerlands();
   }, [fetchOwnerlands]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 100); 
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleSeeDetails = (land: any) => {
+   
+    const landArray = Array.from(land) as [
+      number,       
+      string,       
+      string,       
+      number,        
+      string,       
+      boolean,       
+      boolean        
+    ];
+
   
-  const handleSeeDetails = (land: Land) => {
-    navigate("/land-details", { state: land  });
+  
+    const commodityObj = {
+      numberOfPlots: landArray[0].toString(),
+      landLocation: landArray[1],
+      titleNumber: landArray[2],
+      netWorth: landArray[3].toString(),
+      plotsforSale: landArray[4],
+      isVerified: landArray[5],
+      forSale: landArray[6],
+    };
+  
+    console.log(commodityObj);
+  
+  
+    navigate("/land-details", { state: commodityObj });
   };
+  
 
   return (
     <section className="container mx-2 md:mx-auto overflow-x-hidden">
-      <div className="min-h-screen gap-4 mt-10 md:mt-0 flex flex-col items-center justify-center">
-        <div className="w-full flex flex-row justify-between">
-
-          <div className="w-[90%] md:w-[65%] md:ml-8">
+      <div className="min-h-screen gap-4 mt-10 md:mt-0 flex flex-col items-center justify-center ml-4 md:ml-0">
+        <div className="w-full flex flex-col justify-center md:px-10">
             <div className="w-full h-[50%]">
               <p className="text-black mb-4 text-lg md:text-xl">
                 Recently Listed
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:w-full md:grid-cols-3 gap-2 h-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:w-full md:grid-cols-3 gap-2 h-full ">
                 {Array(3)
                   .fill(0)
-                  .map((land, index) => (
+                  .map((_, index) => (
                     <div
                       key={index}
-                      className="bg-white border transition-all duration-300 transform group-hover:scale-[0.85] hover:shadow-2xl hover:mx-2 hover:scale-105 border-black rounded-2xl w-full sm:w-auto h-full  flex flex-col overflow-hidden"
+                      className={`bg-white border transform transition-transform duration-700 ease-in-out group-hover:scale-[0.85] hover:shadow-2xl hover:md:mx-2 hover:scale-105  border-black rounded-2xl w-[93%] md:w-full sm:w-auto h-full  flex flex-col  overflow-hidden
+                        ${visible ? 'translate-y-0  rotate-0 scale-100 opacity-100' : 'translate-y-10  -rotate-45 scale-75 opacity-0'}`}
                     >
-
                       <div className=" w-[100%] h-[85%] ">
-                        <img src={card} alt="card" className="object-cover h-[100%] w-[100%]" />
-
+                        <img
+                          src={card}
+                          alt="card"
+                          className="object-cover h-[100%] w-[100%]"
+                        />
                       </div>
                       {lands[index] && (
                         <LandDetails
@@ -77,21 +110,24 @@ const BuyersPage = () => {
                           netWorth={Number(lands[index].netWorth)}
                         />
                       )}
-                      <div className="flex items-center  w-full text-black justify-end mb-3">
-                        <button onClick={()=>handleSeeDetails(land)} className="border border-black  md:rounded-2xl md:m-4 p-3 text-xs md:text-sm hover:bg-[#C3A46B] hover:text-black transition duration-300">
+                      <div className="flex items-center  w-full text-black justify-end mb-3 p-2">
+                        <button onClick={()=>handleSeeDetails(lands[index])} className="border text-white border-black bg-[#5C4033]  rounded-xl md:m-4 md:py-1 md:px-2  p-2 text-xs md:text-sm hover:bg-[#C3A46B] hover:text-black transition duration-300">
                           See Details
                         </button>
                       </div>
                     </div>
                   ))}
               </div>
-
             </div>
+
+            {/* other lands */}
             <div className="mt-14 w-full flex flex-col">
-              <h4 className="text-black text-center underline font-semibold p-4 text-lg md:text-xl">Available Leased Lands</h4>
+              <h4 className="text-black text-center underline font-semibold p-4 text-lg md:text-xl">
+                Available Leased Lands
+              </h4>
 
               <div className="  w-full md:w-full h-auto md:mx-auto md:py-4 ">
-                <table className="w-full md:mx-8 text-black" >
+                <table className="w-full md:mx-8 text-black">
                   <thead>
                     <tr>
                       <th className="p-2  text-left">Plots</th>
@@ -103,16 +139,22 @@ const BuyersPage = () => {
                   <tbody>
                     {lands.length === 0 ? (
                       <tr>
-
-                        <td colSpan={4} className="text-black text-sm text-center py-4">
+                        <td
+                          colSpan={4}
+                          className="text-black text-sm text-center py-4"
+                        >
                           No available leased lands
                         </td>
                       </tr>
                     ) : (
                       lands.map((land, index) => (
-
-                        <tr key={index} className="text-center border border-green-300">
-                          <td className="p-2">{land.numberOfPlots.toString()}</td>
+                        <tr
+                          key={index}
+                          className="text-center border border-green-300"
+                        >
+                          <td className="p-2">
+                            {land.numberOfPlots.toString()}
+                          </td>
                           <td className="p-2">{land.titleNumber.toString()}</td>
                           <td className="p-2">
                             {land.landLocation.toString()}
@@ -125,31 +167,6 @@ const BuyersPage = () => {
                 </table>
               </div>
             </div>
-          </div>
-                 {/* hottest land */}
-          <div className="hidden md:block md:ml-8 text-center lg:mr-4">
-            <p className="text-black mb-4 text-lg md:text-xl">Hottest Land</p>
-            <div className="relative w-full max-w-xs md:max-w-sm h-[615px] mx-auto">
-              <img
-                className="w-[350px] h-[615px] object-cover rounded-1xl"
-                src={landImage}
-                alt="land"
-              />
-              <div className="absolute inset-0 flex items-end justify-center p-4 bg-gradient-to-t from-black/60 to-transparent rounded-3xl">
-                <div className="w-full">
-                  {lands[0] && (
-                    <LandDetails
-                      numberOfPlots={lands[0].numberOfPlots}
-                      landLocation={lands[0].landLocation}
-                      titleNumber={lands[0].titleNumber}
-                      plotForSale={lands[0].plotsforSale}
-                      netWorth={Number(lands[0].netWorth)}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
