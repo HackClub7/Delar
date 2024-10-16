@@ -34,8 +34,8 @@ const Home = () => {
   }
   
   return (
-    <div className="flex md:justify-center md:w-[1250px]  h-auto mt-[2px] lg:gap-[8px] p-4">
-      <div className="w-[497.8px] h-[515.28px] gap-[8px] ">
+    <div className="flex md:justify-center md:w-[1250px] text-[#5C4033] h-auto md:mt-[2px] lg:gap-[8px] p-4">
+      <div className="w-[497.8px] h-[5.28px] gap-[8px] ">
         <div className="max-w-full md:max-w-md lg:max-w-lg h-auto gap-6 md:gap-8 mt-8">
           <h2 className=" w-[323px]  text-lg sm:text-xl md:text-3xl lg:text-4xl font-normal leading-snug sm:leading-tight md:leading-snug lg:leading-tight tracking-tight text-left">
             Revolutionizing Land Ownership with Blockchain
@@ -53,18 +53,18 @@ const Home = () => {
          <img
            src={landOverview}
            alt="Land Overview"
-           className="rounded-lg w-full h-auto border-20 bg-white"
+           className="rounded-lg w-full mt-8 h-auto border-20 bg-white"
          />
        </div>
 
-        <div className="flex flex-col md:block hidden md:justify-normal align-middle md:mt-8 lg:w-[407.8px] h-[422.28px] gap-[20px] ">
-          <button onClick={handleBuyLand} className="w-[183px] h-[47px] top-[56.92px] left-[110.7px] md:px-8 md:text-base text-sm md:py-3 bg-white border-[1px] p-[10px 30px] rounded-[12px] bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-            Buy Land
+        <div className="flex flex-row md:block hidden md:justify-normal align-middle md:mt-8 lg:w-[407.8px] h-[422.28px] gap-[20px] ">
+          <button onClick={handleBuyLand} className="w-[183px] h-[47px] top-[56.92px] left-[110.7px] md:px-8 md:text-base text-sm md:py-3 border-[1px] p-[10px 30px] rounded-[12px] bg-[#5C4033] text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+            View All Lands
           </button>
           <img src={button} alt="" className="block ml-[30px] w-310px sm:w-28 md:w-28 h-[80px]" />
           <Link to={"/register"}>
-            <button className="w-[183px] h-[47px] top-[301.92px] left-[110.7px] md:px-8 md:text-base text-sm md:py-3 bg-white border-[1px] p-[10px 30px] rounded-[12px] bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-              Sell Land
+            <button className="w-[183px] h-[47px] top-[301.92px] left-[110.7px] md:px-8 md:text-base text-sm md:py-3 border-[1px] p-[10px 30px] rounded-[12px] bg-[#5C4033] text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+              Register Land
             </button>
           </Link>
         </div>
@@ -77,7 +77,7 @@ const Home = () => {
           <img
             src={landcover}
             alt="Land Block"
-            className="lg:w-[560px] md:w-[400px] lg:h-[510px]"
+            className="lg:w-[510px] md:w-[400px] lg:h-[480px]"
           />
         </div>
       </div>

@@ -23,9 +23,7 @@ const Navbar = () => {
         <span className="flex items-center gap-2 text-3xl font-bold text-white w-40w">
           <img src={logo} alt="logo" className="w-[36.5px] h-[32px] " />
           <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-[#a47f6e] to-[#5C4033]">
-          Delar
-
-          Delar
+          DeLaR
           </h2>
         
         </span>
