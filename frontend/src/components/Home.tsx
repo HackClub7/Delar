@@ -57,6 +57,7 @@ const Home = () => {
          />
        </div>
 
+ 
         <div className="flex flex-row md:block hidden md:justify-normal align-middle md:mt-8 lg:w-[407.8px] h-[422.28px] gap-[20px] ">
           <button onClick={handleBuyLand} className="w-[183px] h-[47px] top-[56.92px] left-[110.7px] md:px-8 md:text-base text-sm md:py-3 border-[1px] p-[10px 30px] rounded-[12px] bg-[#5C4033] text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
             View All Lands
