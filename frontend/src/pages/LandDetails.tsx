@@ -42,7 +42,7 @@ const LandDetails = () => {
       <div className="w-full flex justify-end">
         <button
           onClick={handleModalToggle}
-          className="p-2 md:mr-10 mt-2 rounded-md bg-gradient-to-r from-[#ece2dd] via-[#ce9f89] to-[#aca4a0] text-black font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
+          className="p-2 md:mr-10 mt-2 rounded-md bg-[#5C4033] text-white font-bold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
         >
           Buy Land
         </button>
