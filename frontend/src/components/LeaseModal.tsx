@@ -46,3 +46,5 @@ const Modal = ({ setIsOpen }: ModalProps) => {
 };
 
 export default Modal;
+
+
